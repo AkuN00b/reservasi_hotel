@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Sep 2020 pada 21.35
+-- Waktu pembuatan: 07 Sep 2020 pada 19.18
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -49,6 +49,30 @@ INSERT INTO `bed` (`id`, `name`, `person`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `class`
+--
+
+CREATE TABLE `class` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `class`
+--
+
+INSERT INTO `class` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Standard', '2020-09-05 09:27:54', '2020-09-05 09:27:54'),
+(2, 'Superior', '2020-09-05 09:28:10', '2020-09-05 09:28:10'),
+(3, 'Deluxe', '2020-09-05 09:28:21', '2020-09-05 09:28:21'),
+(4, 'Suite', '2020-09-05 09:28:30', '2020-09-05 09:28:30'),
+(5, 'Presidential Suite', '2020-09-05 09:28:55', '2020-09-05 09:28:55');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `migrations`
 --
 
@@ -66,7 +90,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2020_08_24_060227_create_roles_table', 1),
-(4, '2020_09_03_072541_create_bed_table', 2);
+(4, '2020_09_03_072541_create_bed_table', 2),
+(6, '2020_09_05_155715_create_classes_table', 3),
+(7, '2020_09_07_160233_create_rooms_table', 4);
 
 -- --------------------------------------------------------
 
@@ -105,6 +131,28 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `room`
+--
+
+CREATE TABLE `room` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `bed_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `room`
+--
+
+INSERT INTO `room` (`id`, `class_id`, `bed_id`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1000000, '2020-09-07 09:37:48', '2020-09-07 10:14:03');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -131,9 +179,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `username`, `email`, `password`, `role_id`, `image`, `about`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin Hotel', '-', NULL, '-', '-', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$z/ewgFvcwbxGxqRnOLNgtOkyZQaTQ4apOOav7khnde8ePRPjfAuty', 1, 'default.png', NULL, 'msFt1vd6BO1qICqqC7GKG4DQxIwEM4Qdpfepm9M5VvKJADtMed04pTzaqflA', NULL, NULL),
-(5, 'Receptionist Hotel', '-', NULL, '-', '-', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$oNN0uOcW1WGzvAliLYIjD.Jw5og7h7ABm8Ayz8qHS6MRXiABsQN6q', 2, 'default.png', NULL, 'rAieG1i4QnP2OZiYeQ6I2o15mZJjD7FQgvDckzsaOEH1shOAVH5JlsIvBiKh', NULL, NULL),
-(6, 'Customer Hotel', '-', NULL, '-', '-', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$x.R.0B4ch5KVhGRiBCE85uMjg9u9cJwxUbb535Mb4lBgV9j.Qwd2y', 3, 'default.png', NULL, 'vaTbKdro8YPQfDh8iA9gW4G76KItT8m2t1crkqyoO5WQZBY1AWXZU9ShngEB', NULL, NULL);
+(4, 'Admin Hotel', '-', NULL, '-', '-', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$z/ewgFvcwbxGxqRnOLNgtOkyZQaTQ4apOOav7khnde8ePRPjfAuty', 1, 'default.png', NULL, 'J8Y0qni6t8oChxKFN9I0u25fJot9RnKjctVCyjxAC1pyRXALS9WtvNRSG0NV', NULL, NULL),
+(5, 'Receptionist Hotel', '-', NULL, '-', '-', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$oNN0uOcW1WGzvAliLYIjD.Jw5og7h7ABm8Ayz8qHS6MRXiABsQN6q', 2, 'default.png', NULL, 'hB9KET0yHabr9WFmMf5iYYh6vUEdOJRKRFGH68UGBbOhVz5hlXAi99jBYHty', NULL, NULL),
+(6, 'Customer Hotel', '-', NULL, '-', '-', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$x.R.0B4ch5KVhGRiBCE85uMjg9u9cJwxUbb535Mb4lBgV9j.Qwd2y', 3, 'default.png', NULL, 'YkZJKWJYgQhuX4J1YVXMfbpQOFcCb57C04yMoRzjTchBBKqdDcujCkWeZj5e', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -143,6 +191,12 @@ INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis
 -- Indeks untuk tabel `bed`
 --
 ALTER TABLE `bed`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `class`
+--
+ALTER TABLE `class`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -161,6 +215,12 @@ ALTER TABLE `password_resets`
 -- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `room`
+--
+ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -183,16 +243,28 @@ ALTER TABLE `bed`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT untuk tabel `class`
+--
+ALTER TABLE `class`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

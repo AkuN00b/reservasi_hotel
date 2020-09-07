@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('bed', 'BedController');
+    Route::resource('class', 'ClassController');
+    Route::resource('room', 'RoomController');
 });
 
 Route::group(['as' => 'receptionist.', 'prefix' => 'receptionist', 'namespace' => 'Receptionist', 'middleware' => ['auth', 'receptionist']], function () {

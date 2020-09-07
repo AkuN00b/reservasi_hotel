@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bed extends Model
+class Classs extends Model
 {
-    protected $table = "bed";
+    protected $table = "class";
     protected $fillable = [
-        'name', 'person'
+        'name',
     ];
 
     public function rooms()

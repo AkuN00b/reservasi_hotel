@@ -72,6 +72,22 @@
             <span class="menu-title">Bed Category</span>
           </a>
         </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.class.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-more"></i>
+            </span>
+            <span class="menu-title">Class Category</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.room.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-seat-individual-suite"></i>
+            </span>
+            <span class="menu-title">Room Category</span>
+          </a>
+        </li>
       @endif
 
       @if (Request::is('receptionist*'))
