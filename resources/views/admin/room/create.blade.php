@@ -2,6 +2,10 @@
 
 @section('title', 'Room Create -')
 
+@push('css')
+
+@endpush
+
 @section('content')
 <div class="content-wrapper">
     <div class="container">
@@ -14,19 +18,23 @@
             <div class="form-group">
               <label for="class_id">Bed Class</label>
               <select class="form-control text-white" name="class_id" id="class_id">
+                <option value="" holder>Select Bed Class</option>
                 @foreach ($class as $cl)
                   <option value="{{ $cl->id }}">{{ $cl->name }}</option>                    
                 @endforeach
               </select>
             </div>
+
             <div class="form-group">
               <label for="bed_id">Amount of Person</label>
               <select class="form-control text-white" name="bed_id" id="bed_id">
+                <option value="" holder>Select Amount of Person</option>
                 @foreach ($beds as $bed)
-                  <option value="{{ $bed->id }}">{{ $bed->name }} ({{ $bed->person }})</option>                    
+                  <option value="{{ $bed->id }}" id="person">{{ $bed->name }} ({{ $bed->person }})</option>                    
                 @endforeach
               </select>
             </div>
+
             <div class="form-group">
               <label for="price">Price</label>
               <input type="number" class="form-control" id="price" name="price" placeholder="Class Price">
@@ -40,20 +48,5 @@
 @endsection
 
 @push('js')
-{{-- <script type='text/javascript'>
-  $(window).load(function(){
-  $("#instansi").change(function() {
-              console.log($("#instansi option:selected").val());
-              if ($("#instansi option:selected").val() == 'Lainnya') {
-                  $('#identitas').prop('hidden', false);
-                  $('#jawaban').prop('value', '');
-                  $('#awas').prop('hidden', true);
-              } else {
-                  $('#identitas').prop('hidden', true);
-                  $('#awas').prop('hidden', false);
-                  $('#jawaban').prop('value', 'Nomor Induk PNS');
-              }
-          });
-  });
-</script>   --}}
+
 @endpush

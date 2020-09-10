@@ -45,6 +45,7 @@ class BedController extends Controller
 
         $bed = new Bed();
         $bed->name = $request->name;
+        $bed->slug = str_slug($request->name);
         $bed->person = $request->person;
         $bed->save();
 
@@ -87,6 +88,7 @@ class BedController extends Controller
     {
         $bed = Bed::find($id);
         $bed->name = $request->name;
+        $bed->slug = str_slug($request->name);
         $bed->person = $request->person;
         $bed->save();
 

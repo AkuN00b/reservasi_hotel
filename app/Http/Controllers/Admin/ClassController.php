@@ -44,6 +44,7 @@ class ClassController extends Controller
 
         $class = new Classs();
         $class->name = $request->name;
+        $class->slug = str_slug($request->name);
         $class->save();
 
         Toastr::success('Class Category Successfully Saved :))', 'Success');
@@ -85,6 +86,7 @@ class ClassController extends Controller
     {
         $class = Classs::find($id);
         $class->name = $request->name;
+        $class->slug = str_slug($request->name);
         $class->save();
 
         Toastr::success('Class Category Successfully Updated :))', 'Success');

@@ -49,20 +49,5 @@
 @endsection
 
 @push('js')
-{{-- <script type='text/javascript'>
-  $(window).load(function(){
-  $("#instansi").change(function() {
-              console.log($("#instansi option:selected").val());
-              if ($("#instansi option:selected").val() == 'Lainnya') {
-                  $('#identitas').prop('hidden', false);
-                  $('#jawaban').prop('value', '');
-                  $('#awas').prop('hidden', true);
-              } else {
-                  $('#identitas').prop('hidden', true);
-                  $('#awas').prop('hidden', false);
-                  $('#jawaban').prop('value', 'Nomor Induk PNS');
-              }
-          });
-  });
-</script>   --}}
+
 @endpush

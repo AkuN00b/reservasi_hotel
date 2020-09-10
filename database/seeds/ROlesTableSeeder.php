@@ -14,12 +14,15 @@ class ROlesTableSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'name' => 'Admin',
+            'slug' => 'admin',
         ]);
         DB::table('roles')->insert([
             'name' => 'Receptionist',
+            'slug' => 'receptionist',
         ]);
         DB::table('roles')->insert([
             'name' => 'Customer',
+            'slug' => 'customer',
         ]);
     }
 }

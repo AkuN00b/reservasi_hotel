@@ -29,7 +29,7 @@
                   <tr>
                     <td> {{ $key + 1 }} </td>
                     <td> {{ $room->class->name }} ({{ $room->bed->name }}) </td>
-                    <td> {{ $room->price }}</td>
+                    <td> @uang($room->price) </td>
                     <td> 
                       <a href="{{ route('admin.room.edit',$room->id) }}" class="btn btn-warning mr-2">Edit</a>  
                       <button class="btn btn-danger" type="button" onclick="deleteRoom({{ $room->id }})">
