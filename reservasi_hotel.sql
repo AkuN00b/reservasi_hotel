@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Sep 2020 pada 12.15
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.1
+-- 생성 시간: 20-09-18 05:21
+-- 서버 버전: 10.4.11-MariaDB
+-- PHP 버전: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `reservasi_hotel`
+-- 데이터베이스: `reservasi_hotel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bed`
+-- 테이블 구조 `bed`
 --
 
 CREATE TABLE `bed` (
@@ -38,7 +38,7 @@ CREATE TABLE `bed` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `bed`
+-- 테이블의 덤프 데이터 `bed`
 --
 
 INSERT INTO `bed` (`id`, `name`, `slug`, `person`, `created_at`, `updated_at`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `bed` (`id`, `name`, `slug`, `person`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `class`
+-- 테이블 구조 `class`
 --
 
 CREATE TABLE `class` (
@@ -62,7 +62,7 @@ CREATE TABLE `class` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `class`
+-- 테이블의 덤프 데이터 `class`
 --
 
 INSERT INTO `class` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `class` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- 테이블 구조 `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -85,7 +85,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- 테이블의 덤프 데이터 `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -102,7 +102,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- 테이블 구조 `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -114,7 +114,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- 테이블 구조 `roles`
 --
 
 CREATE TABLE `roles` (
@@ -126,7 +126,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- 테이블의 덤프 데이터 `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
@@ -137,7 +137,7 @@ INSERT INTO `roles` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `room`
+-- 테이블 구조 `room`
 --
 
 CREATE TABLE `room` (
@@ -150,7 +150,7 @@ CREATE TABLE `room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `room`
+-- 테이블의 덤프 데이터 `room`
 --
 
 INSERT INTO `room` (`id`, `class_id`, `bed_id`, `price`, `created_at`, `updated_at`) VALUES
@@ -161,7 +161,7 @@ INSERT INTO `room` (`id`, `class_id`, `bed_id`, `price`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- 테이블 구조 `users`
 --
 
 CREATE TABLE `users` (
@@ -183,56 +183,56 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- 테이블의 덤프 데이터 `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `username`, `email`, `password`, `role_id`, `image`, `about`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin Hotel', '-', NULL, '-', '-', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$z/ewgFvcwbxGxqRnOLNgtOkyZQaTQ4apOOav7khnde8ePRPjfAuty', 1, 'default.png', NULL, 'j2u2idItgF0JxbO8EOqS017LF7cyGZsnBjNypWWUyVtJFxxl8IwtShE5Cgzw', NULL, NULL),
-(5, 'Receptionist Hotel', '-', NULL, '-', '-', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$oNN0uOcW1WGzvAliLYIjD.Jw5og7h7ABm8Ayz8qHS6MRXiABsQN6q', 2, 'default.png', NULL, 'sFGp4CfFDg1PSl1rgywHgIU0TT8Rz1992Uhj8RwcxGHd1ZBWCjRBpSK06Ko6', NULL, NULL),
-(6, 'Customer Hotel', '-', NULL, '-', '-', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$x.R.0B4ch5KVhGRiBCE85uMjg9u9cJwxUbb535Mb4lBgV9j.Qwd2y', 3, 'default.png', NULL, 'YkZJKWJYgQhuX4J1YVXMfbpQOFcCb57C04yMoRzjTchBBKqdDcujCkWeZj5e', NULL, NULL);
+(4, 'Admin Hotel', '-', NULL, '-', '-', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$z/ewgFvcwbxGxqRnOLNgtOkyZQaTQ4apOOav7khnde8ePRPjfAuty', 1, 'default.png', NULL, 'pNFgcC1yMBDWBAUCOTw2ZQMYKLtKYPJqjFK3Sc6WlDKURk1DxvSpqgUiV4tf', NULL, NULL),
+(5, 'Receptionist Hotel', '-', NULL, '-', '-', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$oNN0uOcW1WGzvAliLYIjD.Jw5og7h7ABm8Ayz8qHS6MRXiABsQN6q', 2, 'default.png', NULL, 'QYhGg4nWmuQSmCsOJThuO1YUmTvZTvUcDxN2lY2RbICxDltXozZExcLZotK0', NULL, NULL),
+(6, 'Customer Hotel', '-', NULL, '-', '-', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$x.R.0B4ch5KVhGRiBCE85uMjg9u9cJwxUbb535Mb4lBgV9j.Qwd2y', 3, 'default.png', NULL, 'Iw0rpL8gnxUcqUKNHrx9GuLMOr2Jw7BAYbVAACrDPbmHiNkNNRQuUKl9bQvf', NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- 덤프된 테이블의 인덱스
 --
 
 --
--- Indeks untuk tabel `bed`
+-- 테이블의 인덱스 `bed`
 --
 ALTER TABLE `bed`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `class`
+-- 테이블의 인덱스 `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- 테이블의 인덱스 `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- 테이블의 인덱스 `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `roles`
+-- 테이블의 인덱스 `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `room`
+-- 테이블의 인덱스 `room`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- 테이블의 인덱스 `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -241,41 +241,41 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_no_identitas_unique` (`no_identitas`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- 덤프된 테이블의 AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bed`
+-- 테이블의 AUTO_INCREMENT `bed`
 --
 ALTER TABLE `bed`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `class`
+-- 테이블의 AUTO_INCREMENT `class`
 --
 ALTER TABLE `class`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- 테이블의 AUTO_INCREMENT `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- 테이블의 AUTO_INCREMENT `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `room`
+-- 테이블의 AUTO_INCREMENT `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- 테이블의 AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
