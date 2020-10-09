@@ -20,6 +20,7 @@
                 <tr>
                   <th> # </th>
                   <th> Name </th>
+                  <th> Image </th>
                   <th> Action </th>
                 </tr>
               </thead>
@@ -28,6 +29,7 @@
                   <tr>
                     <td> {{ $key + 1 }} </td>
                     <td> {{ $class->name }} </td>
+                    <td> <img src="{{ asset('storage/class/'.$class->image) }}" alt="Gambar {{ $class->name }}" title="Gambar {{ $class->name }}"> </td>
                     <td> 
                       <a href="{{ route('admin.class.edit',$class->id) }}" class="btn btn-warning mr-2">Edit</a>  
                       <button class="btn btn-danger" type="button" onclick="deleteClass({{ $class->id }})">

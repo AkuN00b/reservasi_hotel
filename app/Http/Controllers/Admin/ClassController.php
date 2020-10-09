@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Classs;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ClassController extends Controller
 {
@@ -40,11 +43,32 @@ class ClassController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'desc' => 'required',
+            'image' => 'required|mimes:jpeg,bmp,png,jpg',
         ]);
+
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
+        if (isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('class'))
+            {
+                Storage::disk('public')->makeDirectory('class');
+            }
+            $class = Image::make($image)->resize(255,174)->stream();
+            Storage::disk('public')->put('class/'.$imagename,$class);
+        } else {
+            $imagename = "default.png";
+        }
 
         $class = new Classs();
         $class->name = $request->name;
-        $class->slug = str_slug($request->name);
+        $class->slug = $slug;
+        $class->desc = $request->desc;
+        $class->image = $imagename;
         $class->save();
 
         Toastr::success('Class Category Successfully Saved :))', 'Success');
@@ -84,9 +108,40 @@ class ClassController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'desc' => 'required',
+            'image' => 'mimes:jpeg,bmp,png,jpg',
+        ]);
+
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
         $class = Classs::find($id);
+        if(isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('class'))
+            {
+                Storage::disk('public')->makeDirectory(('class'));
+            }
+
+            if(Storage::disk('public')->exists('class/'.$class->image))
+            {
+                Storage::disk('public')->delete('class/'.$class->image);
+            }
+
+            $classImage = Image::make($image)->resize(255,174)->stream();
+            Storage::disk('public')->put('class/'.$imagename,$classImage);
+        } else {
+            $imagename = $class->image;
+        }
+
         $class->name = $request->name;
-        $class->slug = str_slug($request->name);
+        $class->slug = $slug;
+        $class->desc = $request->desc;
+        $class->image = $imagename;
         $class->save();
 
         Toastr::success('Class Category Successfully Updated :))', 'Success');
@@ -102,8 +157,14 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        Classs::find($id)->delete();
+        $class = Classs::find($id);
 
+        if(Storage::disk('public')->exists('class/'.$class->image))
+        {
+            Storage::disk('public')->delete('class/'.$class->image);
+        }
+
+        $class->delete();
         Toastr::success('Class Category Successfully Deleted :))', 'Success');
         return redirect()->back();
     }

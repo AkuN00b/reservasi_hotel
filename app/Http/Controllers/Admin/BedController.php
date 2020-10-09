@@ -86,6 +86,11 @@ class BedController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'person' => 'required'
+        ]);
+
         $bed = Bed::find($id);
         $bed->name = $request->name;
         $bed->slug = str_slug($request->name);

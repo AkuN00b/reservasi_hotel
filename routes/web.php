@@ -11,6 +11,8 @@
 |
 */
 Route::get('/', 'DashboardController@index')->name('primary');
+Route::get('class/{id}/{slug?}', 'ClassController@details')->name('class.details');
+Route::get('buy/{id}/{class_id?}/{bed_id?}/{class_slug?}/{bed_slug?}', 'ClassController@buypage')->name('class.buypage');
 
 Auth::routes();
 

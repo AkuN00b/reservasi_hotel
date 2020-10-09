@@ -18,6 +18,9 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/backend/images/favicon.png') }}" />
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
+    <script src="https://cdn.tiny.cloud/1/cg5kmunvcb879yo167g9h9gbn999vojf1r6epp27mtbs8268/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @stack('css')
   </head>
   <body>
@@ -73,6 +76,16 @@
                   });
               @endforeach
           @endif
+      </script>
+      <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'a11ychecker advcode casechange code formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+          toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+          toolbar_mode: 'floating',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Gerlando Corputty',
+        });
       </script>
       @stack('js')
       <!-- endinject -->

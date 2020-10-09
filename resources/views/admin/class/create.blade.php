@@ -9,11 +9,19 @@
         <hr class="mb-3 text-white" color="white">
         <a class="text-white" href="{{ url()->previous() }}" style="text-decoration: none">< Back</a><br><br>
 
-        <form class="forms-sample" method="POST" action="{{ route('admin.class.store') }}">
+        <form class="forms-sample" method="POST" action="{{ route('admin.class.store') }}" enctype="multipart/form-data">
           @csrf
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" id="name" name="name" placeholder="Class Name">
+            </div>
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <textarea name="desc" id="desc" class="form-control" placeholder="Description of Class" cols="30" rows="25"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="image">Image File</label>
+              <input type="file" name="image" id="image" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
             <button type="reset" class="btn btn-dark">Cancel</button>

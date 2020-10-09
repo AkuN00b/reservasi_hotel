@@ -20,7 +20,7 @@
               <select class="form-control text-white" name="class_id" id="class_id">
                 <option value="" holder>Select Bed Class</option>
                 @foreach ($class as $cl)
-                  <option value="{{ $cl->id }}">{{ $cl->name }}</option>                    
+                  <option value="{{ $cl->id }}">{{ $cl->name }}</option>                   
                 @endforeach
               </select>
             </div>
@@ -30,7 +30,7 @@
               <select class="form-control text-white" name="bed_id" id="bed_id">
                 <option value="" holder>Select Amount of Person</option>
                 @foreach ($beds as $bed)
-                  <option value="{{ $bed->id }}" id="person">{{ $bed->name }} ({{ $bed->person }})</option>                    
+                  <option value="{{ $bed->id }}">{{ $bed->name }} ({{ $bed->person }})</option>                    
                 @endforeach
               </select>
             </div>

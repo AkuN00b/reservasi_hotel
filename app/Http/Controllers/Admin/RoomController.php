@@ -45,9 +45,9 @@ class RoomController extends Controller
         $this->validate($request, [
             'class_id' => 'required',
             'bed_id' => 'required',
-            'price' => 'required'
+            'price' => 'required',
         ]);
-
+        
         $room = new Room();
         $room->class_id = $request->class_id;
         $room->bed_id = $request->bed_id;
@@ -93,6 +93,12 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'class_id' => 'required',
+            'bed_id' => 'required',
+            'price' => 'required'
+        ]);
+
         $room = Room::find($id);
         $room->class_id = $request->class_id;
         $room->bed_id = $request->bed_id;

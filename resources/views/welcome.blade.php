@@ -17,17 +17,12 @@
             @foreach ($class as $cl)
                 <div class="row mb-30">
                     <div class="col-md-3 mt-10">
-                        <img src="{{ asset('assets/frontend/img/elements/d.jpg') }}" alt="" class="img-fluid">
+                        <a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}"><img src="{{ asset('storage/class/'.$cl->image) }}" alt="Gambar {{ $cl->name }}" class="img-fluid"></a>
                     </div>
                     <div class="col-md-9">
-                        <b style="font-size: 30px;">{{ $cl->name }}</b>
-                        <p>Recently, the US Federal government banned online casinos from operating in America by making
-                            it illegal to
-                            transfer money to them through any US bank or payment system. As a result of this law, most
-                            of the popular
-                            online casino networks such as Party Gaming and PlayTech left the United States. Overnight,
-                            online casino.</p>
-                            <a href="" class="genric-btn info">Info</a>
+                        <a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}"><b style="font-size: 30px;">{{ $cl->name }} Class</b></a>
+                        <p>{!! str_limit($cl->desc,300) !!}</p>
+                        <a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}" class="genric-btn info">{{ $cl->name }} Class Info</a>
                     </div>
                 </div>
             @endforeach
