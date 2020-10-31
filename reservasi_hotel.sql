@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 20-10-09 21:21
+-- 생성 시간: 20-10-31 09:24
 -- 서버 버전: 10.4.11-MariaDB
 -- PHP 버전: 7.4.1
 
@@ -46,6 +46,31 @@ INSERT INTO `bed` (`id`, `name`, `slug`, `person`, `created_at`, `updated_at`) V
 (2, 'Double', 'double', 2, '2020-09-03 09:56:28', '2020-09-10 02:30:39'),
 (3, 'Main Family', 'main-family', 5, '2020-09-03 09:58:49', '2020-09-10 02:30:43'),
 (4, 'Extended Family', 'extended-family', 10, '2020-09-03 09:59:38', '2020-09-10 02:30:48');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `booking`
+--
+
+CREATE TABLE `booking` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bed_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 테이블의 덤프 데이터 `booking`
+--
+
+INSERT INTO `booking` (`id`, `user_id`, `name`, `bed_id`, `class_id`, `room_id`, `created_at`, `updated_at`) VALUES
+(1, 4, 'iiiiiii', 2, 3, 9, '2020-10-30 22:56:09', '2020-10-30 22:56:09'),
+(3, 4, 'asfewef', 3, 5, 16, '2020-10-31 00:41:42', '2020-10-31 00:41:42');
 
 -- --------------------------------------------------------
 
@@ -100,7 +125,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2020_09_10_092009_add_slug_to_roles_table', 5),
 (9, '2020_09_10_092128_add_slug_to_class_table', 5),
 (10, '2020_09_10_092209_add_slug_to_bed_table', 5),
-(11, '2020_09_24_152304_add_image_and_desc_to_class_table', 6);
+(11, '2020_09_24_152304_add_image_and_desc_to_class_table', 6),
+(12, '2020_10_31_044640_create_booking_table', 7);
 
 -- --------------------------------------------------------
 
@@ -216,6 +242,12 @@ ALTER TABLE `bed`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 테이블의 인덱스 `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 테이블의 인덱스 `class`
 --
 ALTER TABLE `class`
@@ -262,7 +294,13 @@ ALTER TABLE `users`
 -- 테이블의 AUTO_INCREMENT `bed`
 --
 ALTER TABLE `bed`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- 테이블의 AUTO_INCREMENT `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 테이블의 AUTO_INCREMENT `class`
@@ -274,7 +312,7 @@ ALTER TABLE `class`
 -- 테이블의 AUTO_INCREMENT `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 테이블의 AUTO_INCREMENT `roles`
