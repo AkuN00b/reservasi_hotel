@@ -50,14 +50,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof NotFoundHttpException)
-        {
-            return redirect()->back();
-        } 
-        elseif($exception instanceof ErrorException)
-        {
-            return redirect()->back();
-        }
+        // if($exception instanceof NotFoundHttpException)
+        // {
+        //     return redirect()->back();
+        // } 
+        // elseif($exception instanceof ErrorException)
+        // {
+        //     return redirect()->back();
+        // }
         return parent::render($request, $exception);
     }
 }

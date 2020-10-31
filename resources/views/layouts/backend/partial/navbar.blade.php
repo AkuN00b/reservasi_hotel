@@ -88,6 +88,14 @@
             <span class="menu-title">Room Category</span>
           </a>
         </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.booking.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-seat-individual-suite"></i>
+            </span>
+            <span class="menu-title">Booking</span>
+          </a>
+        </li>
       @endif
 
       @if (Request::is('receptionist*'))

@@ -15,4 +15,9 @@ class Classs extends Model
     {
         return $this->hasMany('App\Room');
     }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking');
+    }
 }

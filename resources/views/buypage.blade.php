@@ -27,14 +27,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 posts-list">
-                    <form action="#" method="POST">
+                    <form action="{{ route('booking.store') }}" method="POST">
+                        @csrf
                         <h3>Admin Info</h3>
                         <hr>
                         <div class="row">
                             <div class="col-lg-2 mt-2">Admin Name</div>
                             <div class="col-lg-10">
                                 <div class="border">
-                                    <input type="text" name="first_name" placeholder="First Name" required disabled hidden value="{{ Auth::user()->id }}" class="single-input text-black">
+                                    <input type="text" name="user_id" placeholder="First Name" required hidden value="{{ Auth::user()->id }}" class="single-input text-black">
                                     <input type="text" name="first_name" placeholder="First Name" required disabled value="{{ Auth::user()->name }}" class="single-input text-black">
                                 </div>
                             </div>
@@ -48,7 +49,7 @@
                             <div class="col-lg-2 mt-2">Customer Name</div>
                             <div class="col-lg-10">
                                 <div class="border">
-                                    <input type="text" name="first_name" placeholder="First Name" required class="single-input text-black">
+                                    <input type="text" name="name" placeholder="Full Name" required class="single-input text-black">
                                 </div>
                             </div>
                         </div>
@@ -62,6 +63,7 @@
                             <div class="col-lg-10">
                                 <div class="border">
                                     <input type="text" name="first_name" placeholder="First Name" required disabled value="{{ $beds->name }}" class="single-input text-black">
+                                    <input type="text" name="bed_id" placeholder="First Name" required hidden value="{{ $beds->id }}" class="single-input text-black">
                                 </div>                                
                             </div>
                         </div>
@@ -84,6 +86,7 @@
                             <div class="col-lg-10">
                                 <div class="border">
                                     <input type="text" name="first_name" placeholder="First Name" required disabled value="{{ $classes->name }}" class="single-input text-black">
+                                    <input type="text" name="class_id" placeholder="First Name" required hidden value="{{ $classes->id }}" class="single-input text-black">
                                 </div>
                             </div>
                         </div>
@@ -95,9 +98,12 @@
                             <div class="col-lg-10">
                                 <div class="border">
                                     <input type="text" name="first_name" placeholder="First Name" required disabled value="{{ $rooms->price }}" class="single-input text-black">
+                                    <input type="text" name="room_id" placeholder="First Name" required hidden value="{{ $rooms->id }}" class="single-input text-black">
                                 </div>
                             </div>
                         </div>
+                        <br><br>
+                        <button type="submit" class="genric-btn primary-border btn-block">Booking</button>
                     </form>
                 </div>
             </div>
