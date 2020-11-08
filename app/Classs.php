@@ -11,12 +11,12 @@ class Classs extends Model
         'name',
     ];
 
-    public function rooms()
+    public function room()
     {
         return $this->hasMany('App\Room');
     }
 
-    public function bookings()
+    public function booking()
     {
         return $this->hasMany('App\Booking');
     }

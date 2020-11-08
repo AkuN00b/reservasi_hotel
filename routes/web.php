@@ -23,12 +23,30 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('class', 'ClassController');
     Route::resource('room', 'RoomController');
     Route::resource('booking', 'BookingController');
+    Route::resource('dynamic_data', 'DynamicDataController');
+
+    Route::get('settings', 'SettingsController@index')->name('settings');
+    Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
+    Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
 });
 
 Route::group(['as' => 'receptionist.', 'prefix' => 'receptionist', 'namespace' => 'Receptionist', 'middleware' => ['auth', 'receptionist']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('bed', 'BedController');
+    Route::resource('class', 'ClassController');
+    Route::resource('room', 'RoomController');
+    Route::resource('booking', 'BookingController');
+
+    Route::get('settings', 'SettingsController@index')->name('settings');
+    Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
+    Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
 });
 
 Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Customer', 'middleware' => ['auth', 'customer']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('booking', 'BookingController');
+
+    Route::get('settings', 'SettingsController@index')->name('settings');
+    Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
+    Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
 });

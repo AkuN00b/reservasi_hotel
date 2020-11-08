@@ -3,48 +3,42 @@
     <div class="footer_top">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <div class="footer_widget">
                         <h3 class="footer_title">
                             address
                         </h3>
-                        <p class="footer_text"> 200, Green road, Mongla, <br>
-                            New Yor City USA</p>
-                        <a href="#" class="line-button">Get Direction</a>
+                        <p class="footer_text">
+                            @foreach ($dynamicdatas1 as $dd1)
+                                {{ $dd1->value }} <br>
+                            @endforeach 
+                        </p>
+                        {{-- <a href="#" class="line-button">Get Direction</a> --}}
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <div class="footer_widget">
                         <h3 class="footer_title">
                             Reservation
                         </h3>
-                        <p class="footer_text">+10 367 267 2678 <br>
-                            reservation@montana.com</p>
+                        <p class="footer_text">
+                            @foreach ($dynamicdatas2 as $dd2)
+                                {{ $dd2->value }} <br>
+                            @endforeach
+                        </p>
                     </div>
                 </div>
-                <div class="col-xl-2 col-md-6 col-lg-2">
+                <div class="col-md-4">
                     <div class="footer_widget">
                         <h3 class="footer_title">
                             Navigation
                         </h3>
                         <ul>
                             <li><a href="/">Home</a></li>
-                            <li><a href="#">Rooms</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">News</a></li>
+                            @foreach ($classs as $cl)
+                                <li><a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}">{{ $cl->name }} Room</a></li>
+                            @endforeach
                         </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="footer_widget">
-                        <h3 class="footer_title">
-                            Newsletter
-                        </h3>
-                        <form action="#" class="newsletter_form">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit">Sign Up</button>
-                        </form>
-                        <p class="newsletter_text">Subscribe newsletter to get updates</p>
                     </div>
                 </div>
             </div>
@@ -87,52 +81,3 @@
 </footer>
 
 <!-- link that opens popup -->
-
-<!-- form itself end-->
-    <form id="test-form" class="white-popup-block mfp-hide">
-            <div class="popup_box ">
-                    <div class="popup_inner">
-                        <h3>Check Availability</h3>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <input id="datepicker" placeholder="Check in date">
-                                </div>
-                                <div class="col-xl-6">
-                                    <input id="datepicker2" placeholder="Check out date">
-                                </div>
-                                <div class="col-xl-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Adult">1</option>
-                                        <option value="1">2</option>
-                                        <option value="2">3</option>
-                                        <option value="3">4</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-6">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Children">1</option>
-                                        <option value="1">2</option>
-                                        <option value="2">3</option>
-                                        <option value="3">4</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-12">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Room type">Room type</option>
-                                        <option value="1">Laxaries Rooms</option>
-                                        <option value="2">Deluxe Room</option>
-                                        <option value="3">Signature Room</option>
-                                        <option value="4">Couple Room</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-12">
-                                    <button type="submit" class="boxed-btn3">Check Availability</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-    </form>
-<!-- form itself end -->
-

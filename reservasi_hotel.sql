@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 20-10-31 09:24
+-- 생성 시간: 20-11-08 05:48
 -- 서버 버전: 10.4.11-MariaDB
 -- PHP 버전: 7.4.1
 
@@ -70,7 +70,10 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `user_id`, `name`, `bed_id`, `class_id`, `room_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 'iiiiiii', 2, 3, 9, '2020-10-30 22:56:09', '2020-10-30 22:56:09'),
-(3, 4, 'asfewef', 3, 5, 16, '2020-10-31 00:41:42', '2020-10-31 00:41:42');
+(3, 4, 'asfewef', 3, 5, 16, '2020-10-31 00:41:42', '2020-10-31 00:41:42'),
+(4, 4, 'Gerlando Corputty', 2, 3, 9, '2020-11-01 23:21:33', '2020-11-01 23:21:33'),
+(5, 5, 'Lala', 1, 3, 8, '2020-11-06 11:10:57', '2020-11-06 11:10:57'),
+(6, 6, 'customer', 4, 5, 17, '2020-11-06 12:20:22', '2020-11-06 12:20:22');
 
 -- --------------------------------------------------------
 
@@ -102,6 +105,30 @@ INSERT INTO `class` (`id`, `name`, `slug`, `desc`, `image`, `created_at`, `updat
 -- --------------------------------------------------------
 
 --
+-- 테이블 구조 `dynamic_data`
+--
+
+CREATE TABLE `dynamic_data` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 테이블의 덤프 데이터 `dynamic_data`
+--
+
+INSERT INTO `dynamic_data` (`id`, `value`, `section`, `created_at`, `updated_at`) VALUES
+(1, '(+62) 8000 - 123', 'Reservation', '2020-11-03 08:03:25', '2020-11-06 12:21:32'),
+(2, 'reservasi.hotel@gmail.com', 'Reservation', '2020-11-03 08:04:21', '2020-11-06 12:21:43'),
+(5, '406, Mawar Street, Bogor,', 'Address', '2020-11-07 10:01:08', '2020-11-07 10:07:06'),
+(6, 'West Java, ID', 'Address', '2020-11-07 10:01:36', '2020-11-07 10:01:42');
+
+-- --------------------------------------------------------
+
+--
 -- 테이블 구조 `migrations`
 --
 
@@ -126,7 +153,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2020_09_10_092128_add_slug_to_class_table', 5),
 (10, '2020_09_10_092209_add_slug_to_bed_table', 5),
 (11, '2020_09_24_152304_add_image_and_desc_to_class_table', 6),
-(12, '2020_10_31_044640_create_booking_table', 7);
+(12, '2020_10_31_044640_create_booking_table', 7),
+(13, '2020_11_03_143506_create_dynamic_data_table', 8);
 
 -- --------------------------------------------------------
 
@@ -208,7 +236,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `identitas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '-',
-  `no_identitas` int(11) DEFAULT NULL,
+  `no_identitas` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '-',
   `jenis_kelamin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '-',
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -227,9 +255,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `username`, `email`, `password`, `role_id`, `image`, `about`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin Hotel', '-', NULL, '-', '-', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$z/ewgFvcwbxGxqRnOLNgtOkyZQaTQ4apOOav7khnde8ePRPjfAuty', 1, 'default.png', NULL, 'flrvDsqOF35JJqfWZLSH4W1a0Fn33vy5WE2KC4ZwvOP10Obok6DpdNPTJOKy', NULL, NULL),
-(5, 'Receptionist Hotel', '-', NULL, '-', '-', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$oNN0uOcW1WGzvAliLYIjD.Jw5og7h7ABm8Ayz8qHS6MRXiABsQN6q', 2, 'default.png', NULL, 'QYhGg4nWmuQSmCsOJThuO1YUmTvZTvUcDxN2lY2RbICxDltXozZExcLZotK0', NULL, NULL),
-(6, 'Customer Hotel', '-', NULL, '-', '-', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$x.R.0B4ch5KVhGRiBCE85uMjg9u9cJwxUbb535Mb4lBgV9j.Qwd2y', 3, 'default.png', NULL, 'Iw0rpL8gnxUcqUKNHrx9GuLMOr2Jw7BAYbVAACrDPbmHiNkNNRQuUKl9bQvf', NULL, NULL);
+(4, 'Admin Hotel', 'KTP', '123456756438912', 'Gunung Putri, Bogor', 'Laki-laki', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$uGxQDhccrfJmLM7QjwFS9OVcvWjERYW73XDr8drNrwBTc6hPFIoAe', 1, 'default.png', 'Aku adalah Admin ke 1', 'DOA9TnD728aG1r75jRRzvBKZgYOghNHg2oHezTneoUesCL9qGWFEoy5VxTgw', NULL, '2020-11-06 10:30:48'),
+(5, 'Receptionist Hotel', 'SIM', '92897423909237', 'Bojong Gede, Bogor', 'Perempuan', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$jcp09ZY2uzVlTeV09nEeheQuhndhQ1DVLWnkuPF7D33w6vFzTHoY6', 2, 'default.png', 'Aku adalah Receptionist ke 1', 'fB5WyWt7Tu3iMXdqkHAsrS7wzwCkyEqveuz9BwBtprqP1bE3yVitLkMbiGYz', NULL, '2020-11-06 10:47:26'),
+(6, 'Customer Hotel', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$kMgfpI6cvnEFDeW4VN/HL.UCMDCeG4zn6P9gEh2/HZ0o8.O31.Obm', 3, 'default.png', 'Aku adalah Customer ke 1', 'StVHZpNKYprFR94bAp8Jsxr2HbxISk3CYfSlaot8dUSTk5LGDwMPH4H2yDRu', NULL, '2020-11-06 10:55:35');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -251,6 +279,12 @@ ALTER TABLE `booking`
 -- 테이블의 인덱스 `class`
 --
 ALTER TABLE `class`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 테이블의 인덱스 `dynamic_data`
+--
+ALTER TABLE `dynamic_data`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -300,7 +334,7 @@ ALTER TABLE `bed`
 -- 테이블의 AUTO_INCREMENT `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 테이블의 AUTO_INCREMENT `class`
@@ -309,10 +343,16 @@ ALTER TABLE `class`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- 테이블의 AUTO_INCREMENT `dynamic_data`
+--
+ALTER TABLE `dynamic_data`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- 테이블의 AUTO_INCREMENT `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 테이블의 AUTO_INCREMENT `roles`

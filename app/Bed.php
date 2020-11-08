@@ -11,7 +11,7 @@ class Bed extends Model
         'name', 'person'
     ];
 
-    public function rooms()
+    public function room()
     {
         return $this->hasMany('App\Room');
     }

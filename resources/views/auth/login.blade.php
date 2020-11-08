@@ -81,6 +81,21 @@
                             </a>
                         </div>
                     </div>
+
+                    <ul class="mt-3">
+                      <li>
+                        <p>Email: Password</p>
+                      </li>
+                      <li>
+                        <p>adminhotel@gmail.com: adminhotel11</p>
+                      </li>
+                      <li>
+                        <p>receptionisthotel@gmail.com: receptionisthotel22</p>
+                      </li>
+                      <li>
+                        <p>customerhotel@gmail.com: customerhotel33</p>
+                      </li>
+                    </ul>
                 </form>
               </div>
             </div>

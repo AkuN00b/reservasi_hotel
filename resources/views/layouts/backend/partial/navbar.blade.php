@@ -5,19 +5,55 @@
     <ul class="nav">
       <li class="nav-item profile">
         <div class="profile-desc">
-          <div class="profile-pic">
-            <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
-              <span class="count bg-success"></span>
+          @if (Request::is('admin*'))
+          <a href="{{ route('admin.settings') }}" style="text-decoration: none; color: white;">
+            <div class="profile-pic">
+              <div class="count-indicator">
+                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                <span class="count bg-success"></span>
+              </div>
+              <div class="profile-name">
+                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                <span>Role: {{ Auth::user()->role->name }}</span>
+              </div>
             </div>
-            <div class="profile-name">
-              <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
-              <span>Role: {{ Auth::user()->role->name }}</span>
+          </a>
+          @endif
+
+          @if (Request::is('receptionist*'))
+          <a href="{{ route('receptionist.settings') }}" style="text-decoration: none; color: white;">
+            <div class="profile-pic">
+              <div class="count-indicator">
+                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                <span class="count bg-success"></span>
+              </div>
+              <div class="profile-name">
+                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                <span>Role: {{ Auth::user()->role->name }}</span>
+              </div>
             </div>
-          </div>
+          </a>
+          @endif
+
+          @if (Request::is('customer*'))
+          <a href="{{ route('customer.settings') }}" style="text-decoration: none; color: white;">
+            <div class="profile-pic">
+              <div class="count-indicator">
+                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                <span class="count bg-success"></span>
+              </div>
+              <div class="profile-name">
+                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
+                <span>Role: {{ Auth::user()->role->name }}</span>
+              </div>
+            </div>
+          </a>
+          @endif
+
           <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
           <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-            <a href="#" class="dropdown-item preview-item">
+            @if (Request::is('admin*'))
+            <a href="{{ route('admin.settings') }}" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-dark rounded-circle">
                   <i class="mdi mdi-settings text-primary"></i>
@@ -27,6 +63,31 @@
                 <p class="preview-subject ellipsis mb-1 text-small">Settings</p>
               </div>
             </a>
+            @endif
+            @if (Request::is('receptionist*'))
+            <a href="{{ route('receptionist.settings') }}" class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <div class="preview-icon bg-dark rounded-circle">
+                  <i class="mdi mdi-settings text-primary"></i>
+                </div>
+              </div>
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1 text-small">Settings</p>
+              </div>
+            </a>
+            @endif
+            @if (Request::is('customer*'))
+            <a href="{{ route('customer.settings') }}" class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <div class="preview-icon bg-dark rounded-circle">
+                  <i class="mdi mdi-settings text-primary"></i>
+                </div>
+              </div>
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1 text-small">Settings</p>
+              </div>
+            </a>
+            @endif
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();" class="dropdown-item preview-item">
@@ -91,9 +152,34 @@
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{ route('admin.booking.index') }}">
             <span class="menu-icon">
-              <i class="mdi mdi-seat-individual-suite"></i>
+              <i class="mdi mdi-account-multiple-plus"></i>
             </span>
             <span class="menu-title">Booking</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.dynamic_data.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-layers"></i>
+            </span>
+            <span class="menu-title">Dynamic Data</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.settings') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-settings"></i>
+            </span>
+            <span class="menu-title">Settings</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();"">
+            <span class="menu-icon">
+              <i class="mdi mdi-logout"></i>
+            </span>
+            <span class="menu-title">Logout</span>
           </a>
         </li>
       @endif
@@ -118,6 +204,55 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('receptionist.bed.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-paw"></i>
+            </span>
+            <span class="menu-title">Bed Category</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('receptionist.class.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-more"></i>
+            </span>
+            <span class="menu-title">Class Category</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('receptionist.room.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-seat-individual-suite"></i>
+            </span>
+            <span class="menu-title">Room Category</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('receptionist.booking.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple-plus"></i>
+            </span>
+            <span class="menu-title">Booking</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('receptionist.settings') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-settings"></i>
+            </span>
+            <span class="menu-title">Settings</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();"">
+            <span class="menu-icon">
+              <i class="mdi mdi-logout"></i>
+            </span>
+            <span class="menu-title">Logout</span>
+          </a>
+        </li>
       @endif
 
       @if (Request::is('customer*'))
@@ -140,8 +275,33 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('customer.booking.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple-plus"></i>
+            </span>
+            <span class="menu-title">Booking</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('customer.settings') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-settings"></i>
+            </span>
+            <span class="menu-title">Settings</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();"">
+            <span class="menu-icon">
+              <i class="mdi mdi-logout"></i>
+            </span>
+            <span class="menu-title">Logout</span>
+          </a>
+        </li>
       @endif
       {{-- END NAVIGATION --}}
-
+      
     </ul>
   </nav>
