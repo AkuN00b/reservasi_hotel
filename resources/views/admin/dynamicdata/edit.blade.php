@@ -9,7 +9,7 @@
         <hr class="mb-3 text-white" color="white">
         <a class="text-white" href="{{ url()->previous() }}" style="text-decoration: none">< Back</a><br><br>
 
-        <form class="forms-sample" method="POST" action="{{ route('admin.dynamic_data.update',$dynamicData->id) }}">
+        <form class="forms-sample" method="POST" action="{{ route('admin.dynamic-data.update',$dynamicData->id) }}">
           @csrf
           @method('PUT')
             <div class="form-group">

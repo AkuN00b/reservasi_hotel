@@ -22,8 +22,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::resource('bed', 'BedController');
     Route::resource('class', 'ClassController');
     Route::resource('room', 'RoomController');
+    Route::resource('room-number', 'RoomNumberController');
+    Route::resource('user', 'UserController');
+
     Route::resource('booking', 'BookingController');
-    Route::resource('dynamic_data', 'DynamicDataController');
+
+    Route::get('customer/booking', 'BookProcessController@index')->name('booking.customer');
+    Route::put('booking/approval/{id}', 'BookProcessController@approval')->name('booking.approve');
+    Route::put('booking/decline/{id}', 'BookProcessController@decline')->name('booking.decline');
+    Route::put('booking/check-in/{id}', 'BookProcessController@checkin')->name('booking.checkin');
+    Route::put('booking/check-out/{id}', 'BookProcessController@checkout')->name('booking.checkout');
+
+    Route::resource('dynamic-data', 'DynamicDataController');
 
     Route::get('settings', 'SettingsController@index')->name('settings');
     Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');

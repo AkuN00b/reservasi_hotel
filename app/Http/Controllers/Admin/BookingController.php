@@ -15,7 +15,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
+        $bookings = Booking::orderBy('id', 'DESC')->get();
 
         return view('admin.booking.index', compact('bookings'));
     }
@@ -49,7 +49,9 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookings = Booking::find($id);
+
+        return view('admin.booking.detail', compact('bookings'));
     }
 
     /**

@@ -43,6 +43,7 @@
                             <div class="serial">#</div>
                             <div class="country">Bed (Person)</div>
                             <div class="visit">Price</div>
+                            <div class="visit">Room Available</div>
                             <div class="percentage">Action</div>
                          </div>
                          @foreach ($rooms as $key=>$room)
@@ -50,6 +51,7 @@
                                <div class="serial">{{ $key + 1 }}</div>
                                <div class="country">{{ $room->bed->name }} ({{ $room->bed->person }})</div>
                                <div class="visit">@uang($room->price)</div>
+                               <div class="visit">{{ $room->roomNumber->count() }}</div>
                                <div class="percentage">
                                   @guest
                                     <a href="javascript:void(0)" 

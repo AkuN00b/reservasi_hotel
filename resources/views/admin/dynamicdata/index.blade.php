@@ -12,7 +12,7 @@
         <h2 class="mt-1 mb-2">Dynamic Data</h2>
         <hr class="mb-3 text-white" color="white">
         <button type="button" class="btn btn-primary mb-5">
-            <a href="{{ route('admin.dynamic_data.create') }}" class="text-white" style="text-decoration: none;"><i class="mdi mdi-plus-circle btn-icon-prepend"></i> Create</a> 
+            <a href="{{ route('admin.dynamic-data.create') }}" class="text-white" style="text-decoration: none;"><i class="mdi mdi-plus-circle btn-icon-prepend"></i> Create</a> 
         </button>
         <div class="table-responsive">
             <table class="table table-bordered text-nowrap">
@@ -31,11 +31,11 @@
                     <td> {{ $dynamicdata->value }} </td>
                     <td> {{ $dynamicdata->section }} </td>
                     <td> 
-                      <a href="{{ route('admin.dynamic_data.edit',$dynamicdata->id) }}" class="btn btn-warning mr-2">Edit</a>  
+                      <a href="{{ route('admin.dynamic-data.edit',$dynamicdata->id) }}" class="btn btn-warning mr-2">Edit</a>  
                       <button class="btn btn-danger" type="button" onclick="deleteDynamicData({{ $dynamicdata->id }})">
                         Delete
                       </button>
-                      <form id="delete-form-{{ $dynamicdata->id }}" action="{{ route('admin.dynamic_data.destroy',$dynamicdata->id) }}" method="POST" style="display: none;">
+                      <form id="delete-form-{{ $dynamicdata->id }}" action="{{ route('admin.dynamic-data.destroy',$dynamicdata->id) }}" method="POST" style="display: none;">
                           @csrf
                           @method('DELETE')
                       </form>

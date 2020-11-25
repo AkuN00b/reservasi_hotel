@@ -150,15 +150,46 @@
           </a>
         </li>
         <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.room-number.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-key-plus"></i>
+            </span>
+            <span class="menu-title">Room Number List</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="{{ route('admin.user.index') }}">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple-outline"></i>
+            </span>
+            <span class="menu-title">User Data</span>
+          </a>
+        </li>
+        {{-- <li class="nav-item menu-items">
           <a class="nav-link" href="{{ route('admin.booking.index') }}">
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple-plus"></i>
             </span>
             <span class="menu-title">Booking</span>
           </a>
+        </li> --}}
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#booking" aria-expanded="false" aria-controls="booking">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple-plus"></i>
+            </span>
+            <span class="menu-title">Booking</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="booking">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.booking.index') }}">All Booking</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.booking.customer') }}">Customer Booking</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.dynamic_data.index') }}">
+          <a class="nav-link" href="{{ route('admin.dynamic-data.index') }}">
             <span class="menu-icon">
               <i class="mdi mdi-layers"></i>
             </span>

@@ -35,6 +35,19 @@
                         </h3>
                         <ul>
                             <li><a href="/">Home</a></li>
+                            
+                            @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                            @else
+                                @if (Auth::user()->role->id == 1)
+                                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @elseif (Auth::user()->role->id == 2)
+                                    <li><a href="{{ route('receptionist.dashboard') }}">Dashboard</a></li>
+                                @elseif (Auth::user()->role->id == 3)
+                                    <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li>
+                                @endif
+                            @endguest
+
                             @foreach ($classs as $cl)
                                 <li><a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}">{{ $cl->name }} Room</a></li>
                             @endforeach

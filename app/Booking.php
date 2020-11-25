@@ -8,7 +8,7 @@ class Booking extends Model
 {
     protected $table = "booking";
     protected $fillable = [
-        'user_id', 'name', 'bed_id', 'class_id', 'room_id',
+        'user_id', 'role_id', 'name', 'email', 'identitas', 'no_identitas', 'alamat', 'jenis_kelamin', 'tgl_awal', 'tgl_akhir', 'bed_id', 'class_id', 'room_id', 'image', 'status',
     ];
 
     public function class()

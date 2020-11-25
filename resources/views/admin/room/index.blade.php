@@ -27,7 +27,7 @@
               <tbody>
                 @foreach ($rooms as $key=>$room)
                   <tr>
-                    <td> {{ $key + 1 }} </td>
+                    <td> {{ $key + $rooms->firstItem() }} </td>
                     <td> {{ $room->class->name }} ({{ $room->bed->name }}) </td>
                     <td> @uang($room->price) </td>
                     <td> 
@@ -43,7 +43,8 @@
                   </tr>
                   @endforeach
               </tbody>
-            </table>
+            </table><br><br>
+            {{ $rooms->links() }}
         </div>
     </div>
 </div>

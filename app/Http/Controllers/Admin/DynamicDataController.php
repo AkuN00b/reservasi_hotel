@@ -51,7 +51,7 @@ class DynamicDataController extends Controller
 
         Toastr::success('Dynamic Data Successfully Saved :))', 'Success');
 
-        return redirect()->route('admin.dynamic_data.index');
+        return redirect()->route('admin.dynamic-data.index');
     }
 
     /**
@@ -99,7 +99,7 @@ class DynamicDataController extends Controller
 
         Toastr::success('Dynamic Data Successfully Updated :))', 'Success');
 
-        return redirect()->route('admin.dynamic_data.index');
+        return redirect()->route('admin.dynamic-data.index');
     }
 
     /**

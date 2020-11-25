@@ -9,7 +9,7 @@
         <hr class="mb-3 text-white" color="white">
         <a class="text-white" href="{{ url()->previous() }}" style="text-decoration: none">< Back</a><br><br>
 
-        <form class="forms-sample" method="POST" action="{{ route('admin.dynamic_data.store') }}">
+        <form class="forms-sample" method="POST" action="{{ route('admin.dynamic-data.store') }}">
           @csrf
             <div class="form-group">
               <label for="value">Value</label>

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/slicknav.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/calendar/css/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @stack('css')
 </head>
@@ -67,27 +68,31 @@
 <script src="{{ asset('assets/frontend/js/mail-script.js') }}"></script>
 
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-<script>
-    $('#datepicker').datepicker({
-        iconsLibrary: 'fontawesome',
-        icons: {
-         rightIcon: '<span class="fa fa-caret-down"></span>'
-     }
-    });
-    $('#datepicker2').datepicker({
-        iconsLibrary: 'fontawesome',
-        icons: {
-         rightIcon: '<span class="fa fa-caret-down"></span>'
-     }
-
-    });
-</script>
+<script type="text/javascript" src="{{ asset('assets/calendar/js/bootstrap-datepicker.min.js') }}"></script>
 <script type="text/javascript">
     
     $(function(){
         $('[data-toggle="tooltip"] ').tooltip()
     })            
 
+</script>
+<script type="text/javascript">
+ $(function(){
+  $(".datepicker").datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlight: true,
+      startDate: '+1d',
+      endDate: '+28d',
+  });
+  $("#tgl_mulai").on('changeDate', function(selected) {
+        var startDate = new Date(selected.date.valueOf());
+        $("#tgl_akhir").datepicker('setStartDate', startDate);
+        if($("#tgl_mulai").val() > $("#tgl_akhir").val()){
+          $("#tgl_akhir").val($("#tgl_mulai").val());
+        }
+  });
+ });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {!! Toastr::message() !!}
