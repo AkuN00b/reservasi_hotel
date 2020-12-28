@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Booking;
+use App\RoomNumber;
 
 class BookingController extends Controller
 {
@@ -50,8 +51,10 @@ class BookingController extends Controller
     public function show($id)
     {
         $bookings = Booking::find($id);
+        $roomnumber = RoomNumber::where('room_id', $bookings->room_id)
+                                ->where('status', 1)->get();
 
-        return view('admin.booking.detail', compact('bookings'));
+        return view('admin.booking.detail', compact('bookings', 'roomnumber'));
     }
 
     /**

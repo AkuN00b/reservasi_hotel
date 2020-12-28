@@ -8,7 +8,7 @@ class Room extends Model
 {
     protected $table = "room";
     protected $fillable = [
-        'class_id', 'bed_id', 'price',
+        'class_id', 'bed_id', 'price', 'user_id', 'room_id', 'slug', 'status',
     ];
 
     public function class()
@@ -28,6 +28,11 @@ class Room extends Model
 
     public function roomNumber()
     {
-        return $this->hasMany('App\RoomNumber');
+        return $this->hasMany('App\RoomNumber')->where('status', 1);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -47,8 +47,11 @@
                     <div class="form-group row">
                         <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
 
-                        <div class="col-md-12">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                        <div class="col-md-12 input-group" id="show_hide_password">
+                            <input id="password" type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }} pwd" name="password" required>
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-success" type="button"><i class="mdi mdi-eye-off"></i></button>
+                            </div>    
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -75,10 +78,6 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Login') }}
                             </button>
-
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
                         </div>
                     </div>
 
@@ -124,6 +123,24 @@
           $('[data-toggle="tooltip"] ').tooltip()
       })            
   
+    </script>
+
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#show_hide_password button").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');                
+                $('#show_hide_password i').removeClass( "mdi mdi-eye" );
+                $('#show_hide_password i').addClass( "mdi mdi-eye-off" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "mdi mdi-eye-off" );
+                $('#show_hide_password i').addClass( "mdi mdi-eye" );
+            }
+        });
+    });
     </script>
     <!-- endinject -->
   </body>

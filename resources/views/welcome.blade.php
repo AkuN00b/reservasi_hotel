@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-md-9">
                         <a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}"><b style="font-size: 30px;">{{ $cl->name }} Class</b></a>
-                        <p>{!! str_limit($cl->desc,300) !!}</p>
+                        <p>{!! str_limit($cl->desc, 300) !!}</p>
                         <a href="{{ route('class.details',$cl->id.'/'.$cl->slug) }}" class="genric-btn info">{{ $cl->name }} Class Info</a>
                     </div>
                 </div>

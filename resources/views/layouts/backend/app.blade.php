@@ -17,10 +17,18 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/backend/images/favicon.png') }}" />
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
-    <script src="https://cdn.tiny.cloud/1/cg5kmunvcb879yo167g9h9gbn999vojf1r6epp27mtbs8268/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <style type="text/css">
+    hr.garis {
+      height: 10px;
+      border: 0;
+      box-shadow: 0 10px 10px -10px #b6c4ff inset;
+    }
+    </style>
     @stack('css')
   </head>
   <body>
@@ -35,8 +43,8 @@
             <!-- partial:../../partials/_footer.html -->
             <footer class="footer">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
-                <span class="text-muted float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy;2020 - <script>document.write(new Date().getFullYear());</script> || Gerlando & Zildan. All rights reserved.</span>
+                <span class="text-muted float-none float-sm-right d-block mt-1 mt-sm-0 text-center">This Program is Made With <i class="mdi mdi-heart text-danger"></i></span>
               </div>
             </footer>
             <!-- partial -->
@@ -64,6 +72,9 @@
         })            
     
       </script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+      <script src="https://cdn.tiny.cloud/1/cg5kmunvcb879yo167g9h9gbn999vojf1r6epp27mtbs8268/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
       {!! Toastr::message() !!}
   
@@ -80,21 +91,30 @@
       <script>
         tinymce.init({
           selector: 'textarea',
-          plugins: 'a11ychecker advcode casechange code formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-          toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+          plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
           toolbar_mode: 'floating',
           tinycomments_mode: 'embedded',
           tinycomments_author: 'Gerlando Corputty',
         });
       </script>
-      <script type="text/javascript">
-        $(".reveal").on('click',function() {
-          var $pwd = $(".pwd");
-          if ($pwd.attr('type') === 'password') {
-              $pwd.attr('type', 'text');
-          } else {
-              $pwd.attr('type', 'password');
-          }
+      <script>
+        $(document).ready(function() {
+          $('#table_id').DataTable();
+        });
+      </script>
+      <script>
+        $(document).ready(function() {
+          $('#table_idd').DataTable();
+        });
+      </script>
+      <script>
+        $(document).ready(function() {
+          $('#table_iddd').DataTable();
+        });
+      </script>
+      <script>
+        $(document).ready(function() {
+          $('#table_idddd').DataTable();
         });
       </script>
       @stack('js')

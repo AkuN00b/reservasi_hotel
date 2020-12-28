@@ -6,15 +6,15 @@
 <div class="content-wrapper">
     <div class="container">
         <h2 class="mt-1 mb-2">Edit Dynamic Data</h2>
-        <hr class="mb-3 text-white" color="white">
+        <hr class="mb-3 garis">
         <a class="text-white" href="{{ url()->previous() }}" style="text-decoration: none">< Back</a><br><br>
 
         <form class="forms-sample" method="POST" action="{{ route('admin.dynamic-data.update',$dynamicData->id) }}">
           @csrf
           @method('PUT')
             <div class="form-group">
-              <label for="value">Value</label>
-              <input type="text" class="form-control" id="value" name="value" placeholder="Input Value" value="{{ $dynamicData->value }}">
+              <label for="value">Description</label>
+              <textarea name="value" id="value" class="form-control" placeholder="Description of Class" cols="30" rows="25">{{ $dynamicData->value }}</textarea>
             </div>
             <div class="form-group">
               <label for="section">Section</label>

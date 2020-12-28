@@ -17,7 +17,7 @@ class RoomNumberController extends Controller
      */
     public function index()
     {
-        $roomnumbers = RoomNumber::paginate(10);
+        $roomnumbers = RoomNumber::all();
 
         return view('admin.roomnumber.index', compact('roomnumbers'));
     }

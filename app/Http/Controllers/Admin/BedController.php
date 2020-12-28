@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Bed;
 use Brian2694\Toastr\Facades\Toastr;
+use Auth;
 
 class BedController extends Controller
 {
@@ -16,7 +17,7 @@ class BedController extends Controller
      */
     public function index()
     {
-        $beds = Bed::all();
+        $beds = Bed::where('status', 1)->get();
         return view('admin.bed.index', compact('beds'));
     }
 
@@ -47,6 +48,8 @@ class BedController extends Controller
         $bed->name = $request->name;
         $bed->slug = str_slug($request->name);
         $bed->person = $request->person;
+        $bed->user_id = Auth::user()->id;
+        $bed->status = 1;
         $bed->save();
 
         Toastr::success('Bed Category Successfully Saved :))', 'Success');
@@ -62,7 +65,8 @@ class BedController extends Controller
      */
     public function show($id)
     {
-        //
+        $bed = Bed::find($id);
+        return view('admin.bed.detail', compact('bed'));
     }
 
     /**

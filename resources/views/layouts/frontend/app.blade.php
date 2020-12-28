@@ -78,7 +78,7 @@
 </script>
 <script type="text/javascript">
  $(function(){
-  $(".datepicker").datepicker({
+  $(".enddate").datepicker({
       format: 'yyyy-mm-dd',
       autoclose: true,
       todayHighlight: true,
@@ -94,6 +94,17 @@
   });
  });
 </script>
+<script type="text/javascript">
+    $(function(){
+     $(".startdate").datepicker({
+         format: 'yyyy-mm-dd',
+         autoclose: true,
+         todayHighlight: true,
+         startDate: '+1d',
+         endDate: '+2d',
+     });
+    });
+   </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {!! Toastr::message() !!}
 

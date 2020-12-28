@@ -3,53 +3,69 @@
 @section('title', 'Booking Index -')
 
 @push('css')
-    
+
 @endpush
 
 @section('content')
 <div class="content-wrapper">
     <div class="container">
         <h2 class="mt-1 mb-2">Booking</h2>
-        <hr class="mb-3 text-white" color="white">
-        {{-- <button type="button" class="btn btn-primary mb-5">
-            <a href="{{ route('admin.bed.create') }}" class="text-white" style="text-decoration: none;"><i class="mdi mdi-plus-circle btn-icon-prepend"></i> Create</a> 
-        </button> --}}
-        <div class="table-responsive">
-            <table class="table table-bordered text-nowrap">
-              <thead>
-                <tr>
-                  <th> # </th>
-                  <th> user_id </th>
-                  <th> name </th>
-                  <th> bed_id </th>
-                  <th> class_id </th>  
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($bookings as $key=>$booking)
-                  <tr>
-                    <td> {{ $key + 1 }} </td>
-                    <td> {{ $booking->user->name }} </td>
-                    <td> {{ $booking->name }} </td>
-                    <td> {{ $booking->bed->name }} </td>
-                    <td> {{ $booking->class->name }} </td>
-                    {{-- <td> 
-                      <a href="{{ route('admin.bed.edit',$bed->id) }}" class="btn btn-warning mr-2">Edit</a>  
-                      <button class="btn btn-danger" type="button" onclick="deleteBed({{ $bed->id }})">
-                        Delete
-                      </button>
-                      <form id="delete-form-{{ $bed->id }}" action="{{ route('admin.bed.destroy',$bed->id) }}" method="POST" style="display: none;">
-                          @csrf
-                          @method('DELETE')
-                      </form>
-                    </td> --}}
-                  </tr>
-                  @endforeach
-              </tbody>
-            </table>
+        <hr class="mb-3 garis">
+        <button type="button" class="btn btn-primary mb-5">
+            <a href="{{ route('primary') }}" class="text-white" style="text-decoration: none;"><i class="mdi mdi-plus-circle btn-icon-prepend"></i> Create</a> 
+        </button>
+        <div class="card">
+            <div class="card-header" style="background-color: #3c5f8f">
+                Booking History
+            </div>
+            <div class="card-body" style="background-color: #aec9ef">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-nowrap display" id="table_id">
+                      <thead>
+                        <tr>
+                          <th> # </th>
+                          <th> User Name </th>
+                          <th> Order Name </th>
+                          <th> Bed Category </th>
+                          <th> Class Category </th> 
+                          <th> Action </th> 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($bookings as $key=>$booking)
+                          <tr class="text-black">
+                            <td> {{ $key + 1 }} </td>
+                            <td> {{ $booking->user->name }} 
+                              @if ($booking->status == 0)
+                                  <sup><span class="badge badge-pill badge-warning" style="font-size: 10px;">Wait for Confirmation</span></sup> 
+                              @elseif ($booking->status == 1)
+                                  <sup><span class="badge badge-pill badge-primary" style="font-size: 10px;">Accepted</span></sup> 
+                              @elseif ($booking->status == 2)
+                                  <sup><span class="badge badge-pill badge-danger" style="font-size: 10px;">Canceled</span></sup> 
+                              @elseif ($booking->status == 3)
+                                  <sup><span class="badge badge-pill badge-success" style="font-size: 10px;">Checked In</span></sup> 
+                              @elseif ($booking->status == 4)
+                                  <sup><span class="badge badge-pill badge-info" style="font-size: 10px;">Checked Out</span></sup> 
+                              @elseif ($booking->status == 5)
+                                  <sup><span class="badge badge-pill badge-danger" style="font-size: 10px;" data-toggle="tooltip" data-placement="bottom" title="Ref. Booking: {{ $booking->transaction_id }}">Buy Your Booking</span></sup> 
+                              @endif
+                            </td>
+                            <td> {{ $booking->name }} </td>
+                            <td> {{ $booking->bed->name }} </td>
+                            <td> {{ $booking->class->name }} </td>
+                            <td>
+                              <a href="{{ route('customer.booking.show',$booking->id) }}" class="btn btn-info mr-2 btn-block pt-1 pb-1 pl-3" data-toggle="tooltip" data-placement="bottom" title="Your Booking Detail"><i class="mdi mdi-eye"></i></a>
+                            </td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 @push('js')

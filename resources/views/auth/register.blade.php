@@ -61,8 +61,11 @@
                     <div class="form-group row">
                         <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
 
-                        <div class="col-md-12">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                        <div class="col-md-12 input-group" id="show_hide_password">
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} pwd" name="password" required>
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-success" type="button"><i class="mdi mdi-eye"></i></button>
+                            </div>
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -75,8 +78,11 @@
                     <div class="form-group row">
                         <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label>
 
-                        <div class="col-md-12">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                        <div class="col-md-12 input-group" id="show_hide_conpassword">
+                            <input id="password-confirm" type="password" class="form-control pwd" name="password_confirmation" required>
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-success" type="button"><i class="mdi mdi-eye"></i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -109,6 +115,38 @@
     <script src="{{ asset('assets/backend/js/misc.js') }}"></script>
     <script src="{{ asset('assets/backend/js/settings.js') }}"></script>
     <script src="{{ asset('assets/backend/js/todolist.js') }}"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#show_hide_password button").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');                
+                $('#show_hide_password i').removeClass( "mdi mdi-eye" );
+                $('#show_hide_password i').addClass( "mdi mdi-eye-off" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "mdi mdi-eye-off" );
+                $('#show_hide_password i').addClass( "mdi mdi-eye" );
+            }
+        });
+    });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#show_hide_conpassword button").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_conpassword input').attr("type") == "text"){
+                $('#show_hide_conpassword input').attr('type', 'password');                
+                $('#show_hide_conpassword i').removeClass( "mdi mdi-eye" );
+                $('#show_hide_conpassword i').addClass( "mdi mdi-eye-off" );
+            }else if($('#show_hide_conpassword input').attr("type") == "password"){
+                $('#show_hide_conpassword input').attr('type', 'text');
+                $('#show_hide_conpassword i').removeClass( "mdi mdi-eye-off" );
+                $('#show_hide_conpassword i').addClass( "mdi mdi-eye" );
+            }
+        });
+    });
+    </script>
     <script type="text/javascript">
     
       $(function(){

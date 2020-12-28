@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Receptionist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Booking;
-use Auth;
+use App\RoomNumber;
 
 class BookingController extends Controller
 {
@@ -16,7 +16,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::where('user_id', Auth::user()->id)->get();
+        $bookings = Booking::orderBy('id', 'DESC')->get();
 
         return view('receptionist.booking.index', compact('bookings'));
     }
@@ -50,7 +50,11 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookings = Booking::find($id);
+        $roomnumber = RoomNumber::where('room_id', $bookings->room_id)
+                                ->where('status', 1)->get();
+
+        return view('receptionist.booking.detail', compact('bookings', 'roomnumber'));
     }
 
     /**

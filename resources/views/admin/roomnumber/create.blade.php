@@ -10,7 +10,7 @@
 <div class="content-wrapper">
     <div class="container">
         <h2 class="mt-1 mb-2">Create Room Number</h2>
-        <hr class="mb-3 text-white" color="white">
+        <hr class="mb-3 garis">
         <a class="text-white" href="{{ url()->previous() }}" style="text-decoration: none">< Back</a><br><br>
 
         <form class="forms-sample" method="POST" action="{{ route('admin.room-number.store') }}">

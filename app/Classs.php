@@ -8,7 +8,7 @@ class Classs extends Model
 {
     protected $table = "class";
     protected $fillable = [
-        'name',
+        'name', 'slug', 'desc', 'image', 'user_id', 'user_image_id', 'class_id', 'status',
     ];
 
     public function room()
@@ -19,5 +19,15 @@ class Classs extends Model
     public function booking()
     {
         return $this->hasMany('App\Booking');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function user_image()
+    {
+        return $this->belongsTo('App\User');
     }
 }

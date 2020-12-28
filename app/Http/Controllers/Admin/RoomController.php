@@ -8,6 +8,7 @@ use App\Room;
 use App\Bed;
 use App\Classs;
 use Brian2694\Toastr\Facades\Toastr;
+use Auth;
 
 class RoomController extends Controller
 {
@@ -18,7 +19,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::paginate(10);
+        $rooms = Room::where('status', 1)->get();
         return view('admin.room.index', compact('rooms'));
     }
 
@@ -29,8 +30,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $beds = Bed::all();
-        $class = Classs::all();
+        $beds = Bed::where('status', 1)->get();
+        $class = Classs::where('status', 1)->get();
         return view('admin.room.create', compact('beds', 'class'));
     }
 
@@ -52,6 +53,8 @@ class RoomController extends Controller
         $room->class_id = $request->class_id;
         $room->bed_id = $request->bed_id;
         $room->price = $request->price;
+        $room->user_id = Auth::user()->id;
+        $room->status = 1;
         $room->save();
 
         Toastr::success('Room Category Successfully Saved :))', 'Success');
@@ -67,7 +70,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $room = Room::find($id);
+        return view('admin.room.detail', compact('room'));
     }
 
     /**
@@ -79,8 +83,8 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = Room::find($id);
-        $class = Classs::all();
-        $beds = Bed::all();
+        $class = Classs::where('status', 1)->get();
+        $beds = Bed::where('status', 1)->get();
         return view('admin.room.edit', compact('room', 'class', 'beds'));
     }
 

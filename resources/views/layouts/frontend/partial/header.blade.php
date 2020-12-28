@@ -8,7 +8,18 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="/">home</a></li>
+                                        <li><a class="active" href="{{ route('primary') }}">home</a></li>
+                                        @guest
+                                            <li><a href="{{ route('login') }}">login</a></li>
+                                        @else
+                                            @if (Auth::user()->role->id == 1)
+                                                <li><a href="{{ route('admin.dashboard') }}">dashboard</a></li>
+                                            @elseif (Auth::user()->role->id == 2)
+                                                <li><a href="{{ route('receptionist.dashboard') }}">dashboard</a></li>
+                                            @elseif (Auth::user()->role->id == 3)
+                                                <li><a href="{{ route('customer.dashboard') }}">dashboard</a></li>
+                                            @endif
+                                        @endguest
                                         {{-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.html">blog</a></li>

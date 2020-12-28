@@ -126,28 +126,50 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.bed.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#bed" aria-expanded="false" aria-controls="bed">
             <span class="menu-icon">
               <i class="mdi mdi-paw"></i>
             </span>
-            <span class="menu-title">Bed Category</span>
+            <span class="menu-title">Bed</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="bed">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.bed.index') }}">Bed Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.bed.request') }}">Bed Category Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.class.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#class" aria-expanded="false" aria-controls="class">
             <span class="menu-icon">
               <i class="mdi mdi-more"></i>
             </span>
-            <span class="menu-title">Class Category</span>
+            <span class="menu-title">Class</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="class">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.class.index') }}">Class Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.class.request') }}">Class Category Request</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.class.image-request') }}">Class Image Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.room.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#room" aria-expanded="false" aria-controls="room">
             <span class="menu-icon">
               <i class="mdi mdi-seat-individual-suite"></i>
             </span>
-            <span class="menu-title">Room Category</span>
+            <span class="menu-title">Room</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="room">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.room.index') }}">Room Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.room.request') }}">Room Category Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{ route('admin.room-number.index') }}">
@@ -236,36 +258,65 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('receptionist.bed.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#bed" aria-expanded="false" aria-controls="bed">
             <span class="menu-icon">
               <i class="mdi mdi-paw"></i>
             </span>
-            <span class="menu-title">Bed Category</span>
+            <span class="menu-title">Bed</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="bed">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.bed.index') }}">Bed Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.bed.request') }}">My Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('receptionist.class.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#class" aria-expanded="false" aria-controls="class">
             <span class="menu-icon">
               <i class="mdi mdi-more"></i>
             </span>
-            <span class="menu-title">Class Category</span>
+            <span class="menu-title">Class</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="class">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.class.index') }}">Class Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.class.request') }}">My Request</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.class.image-request') }}">My Image Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('receptionist.room.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#room" aria-expanded="false" aria-controls="room">
             <span class="menu-icon">
               <i class="mdi mdi-seat-individual-suite"></i>
             </span>
-            <span class="menu-title">Room Category</span>
+            <span class="menu-title">Room</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="room">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room.index') }}">Room Category</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room.request') }}">My Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('receptionist.booking.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#booking" aria-expanded="false" aria-controls="booking">
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple-plus"></i>
             </span>
             <span class="menu-title">Booking</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="booking">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.booking.index') }}">All Booking</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.booking.customer') }}">Customer Booking</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{ route('receptionist.settings') }}">

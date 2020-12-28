@@ -9,6 +9,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Auth;
 
 class ClassController extends Controller
 {
@@ -19,7 +20,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $classes = Classs::all();
+        $classes = Classs::where('status', 1)->get();
         return view('admin.class.index', compact('classes'));
     }
 
@@ -69,6 +70,8 @@ class ClassController extends Controller
         $class->slug = $slug;
         $class->desc = $request->desc;
         $class->image = $imagename;
+        $class->user_id = Auth::user()->id;
+        $class->status = 1;
         $class->save();
 
         Toastr::success('Class Category Successfully Saved :))', 'Success');
@@ -84,7 +87,8 @@ class ClassController extends Controller
      */
     public function show($id)
     {
-        //
+        $class = Classs::find($id);
+        return view('admin.class.detail', compact('class'));
     }
 
     /**

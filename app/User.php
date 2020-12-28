@@ -32,7 +32,23 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    public function booking(){
+    public function booking()
+    {
         return $this->hasMany('App\Booking');
+    }
+
+    public function bed()
+    {
+        return $this->hasMany('App\Bed');
+    }
+
+    public function class()
+    {
+        return $this->hasMany('App\Classs');
+    }
+
+    public function room()
+    {
+        return $this->hasMany('App\Room');
     }
 }

@@ -8,7 +8,23 @@ class Booking extends Model
 {
     protected $table = "booking";
     protected $fillable = [
-        'user_id', 'role_id', 'name', 'email', 'identitas', 'no_identitas', 'alamat', 'jenis_kelamin', 'tgl_awal', 'tgl_akhir', 'bed_id', 'class_id', 'room_id', 'image', 'status',
+        'user_id', 
+        'role_id', 
+        'name', 
+        'email', 
+        'identitas', 
+        'no_identitas', 
+        'alamat', 
+        'jenis_kelamin', 
+        'tgl_awal', 
+        'tgl_akhir', 
+        'bed_id', 
+        'class_id', 
+        'room_id', 
+        'room_number_id',
+        'image', 
+        'status', 
+        'transaction_id',
     ];
 
     public function class()
@@ -29,5 +45,10 @@ class Booking extends Model
     public function room()
     {
         return $this->belongsTo('App\Room');
+    }
+
+    public function room_number()
+    {
+        return $this->belongsTo('App\RoomNumber');
     }
 }

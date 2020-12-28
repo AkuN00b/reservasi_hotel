@@ -14,8 +14,8 @@ class DashboardController extends Controller
 {
     public function index()
     {   
-        $class = Classs::all();
-        $classs = Classs::all();
+        $class = Classs::where('status', 1)->get();
+        $classs = Classs::where('status', 1)->get();
         $dynamicdatas1 = DynamicData::where('section', 'Address')->get();
         $dynamicdatas2 = DynamicData::where('section', 'Reservation')->get();
 
