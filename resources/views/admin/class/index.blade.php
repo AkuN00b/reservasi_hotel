@@ -62,7 +62,7 @@
                 </table>
               </div>  
             @else
-              <center>No Any Data</center>
+              <center class="text-black">No Any Data</center>
             @endif
           </div>
         </div>
@@ -171,7 +171,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>
@@ -181,49 +181,49 @@
             Active Request
           </div>
           <div class="card-body" style="background-color: #99bff0">
-            <div class="table-responsive">
-              <table class="table table-bordered text-nowrap display" id="table_idd">
-                <thead>
-                  <tr>
-                    <th> # </th>
-                    <th> Name </th>
-                    <th> Image </th>
-                    <th> Request By </th>
-                    <th> Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @php $no = 1; @endphp
-                  @foreach ($class_active as $class)
-                    @if ($class->user->role->id == 2)
-                      <tr class="text-black">
-                        <td> {{ $no++ }} </td>
-                        <td> {{ $class->name }} </td>
-                        <td>
-                          @if ($class->image == NULL)
-                            No Image
-                          @else
-                            <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
-                          @endif
-                        </td>
-                        <td class="text-warning"> {{ $class->user->name }} </td>
-                        <td> 
-                          <a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
-                          <a href="{{ route('admin.class.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $class->name }}"><i class="mdi mdi-pencil"></i></a>  
-                          <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $class->id }})" data-toggle="tooltip" data-placement="bottom" title="Delete {{ $class->name }}">
-                            <i class="mdi mdi-close"></i>
-                          </button>
-                          <form id="delete-form-{{ $class->id }}" action="{{ route('admin.class.destroy',$class->id) }}" method="POST" style="display: none;">
-                              @csrf
-                              @method('DELETE')
-                          </form>
-                        </td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
+              <div class="table-responsive">
+                <table class="table table-bordered text-nowrap display" id="table_idd">
+                  <thead>
+                    <tr>
+                      <th> # </th>
+                      <th> Name </th>
+                      <th> Image </th>
+                      <th> Request By </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($class_active as $class)
+                      @if ($class->user->role->id == 2)
+                        <tr class="text-black">
+                          <td> {{ $no++ }} </td>
+                          <td> {{ $class->name }} </td>
+                          <td>
+                            @if ($class->image == NULL)
+                              No Image
+                            @else
+                              <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
+                            @endif
+                          </td>
+                          <td class="text-warning"> {{ $class->user->name }} </td>
+                          <td> 
+                            <a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
+                            <a href="{{ route('admin.class.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $class->name }}"><i class="mdi mdi-pencil"></i></a>  
+                            <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $class->id }})" data-toggle="tooltip" data-placement="bottom" title="Delete {{ $class->name }}">
+                              <i class="mdi mdi-close"></i>
+                            </button>
+                            <form id="delete-form-{{ $class->id }}" action="{{ route('admin.class.destroy',$class->id) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                          </td>
+                        </tr>
+                      @endif
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
           </div>
         </div>
 
@@ -272,7 +272,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>
@@ -322,7 +322,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>

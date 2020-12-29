@@ -22,44 +22,48 @@
             Class Category
           </div>
           <div class="card-body" style="background-color: #aec9ef">
-            <div class="table-responsive">
-              <table class="table table-bordered text-nowrap display" id="table_id">
-                <thead>
-                  <tr>
-                    <th> # </th>
-                    <th> Name </th>
-                    <th> Image </th>
-                    <th> Last Updated By</th>
-                    <th> Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($classes as $key=>$class)
-                    <tr class="text-black">
-                      <td> {{ $key + 1 }} </td>
-                      <td> {{ $class->name }} </td>
-                      <td> <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" alt="Gambar {{ $class->name }}" data-toggle="tooltip" data-placement="bottom" title="Lihat Gambar {{ $class->name }}"></a> </td>
-                      @if (Auth::user()->name == $class->user->name)
-                        <td class="text-success"> {{ $class->user->name }} </td>
-                      @else
-                        <td> {{ $class->user->name }} </td>
-                      @endif
-                      <td> 
-                        <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
-                        <a href="{{ route('receptionist.class.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit {{ $class->name }}"><i class="mdi mdi-pencil"></i></a>  
-                        <a href="{{ route('receptionist.class.image-request.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit Image {{ $class->name }}"><i class="mdi mdi-image-broken"></i></a>
-                        <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $class->id }})" data-toggle="tooltip" data-placement="bottom" title="Request Delete {{ $class->name }}">
-                          <i class="mdi mdi-close"></i>
-                        </button>
-                        <form id="delete-form-{{ $class->id }}" action="{{ route('receptionist.class.requestdelete',$class->id) }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                      </td>
+            @if ($classes->count() > 0)
+              <div class="table-responsive">
+                <table class="table table-bordered text-nowrap display" id="table_id">
+                  <thead>
+                    <tr>
+                      <th> # </th>
+                      <th> Name </th>
+                      <th> Image </th>
+                      <th> Last Updated By</th>
+                      <th> Action </th>
                     </tr>
-                    @endforeach
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    @foreach ($classes as $key=>$class)
+                      <tr class="text-black">
+                        <td> {{ $key + 1 }} </td>
+                        <td> {{ $class->name }} </td>
+                        <td> <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" alt="Gambar {{ $class->name }}" data-toggle="tooltip" data-placement="bottom" title="Lihat Gambar {{ $class->name }}"></a> </td>
+                        @if (Auth::user()->name == $class->user->name)
+                          <td class="text-success"> {{ $class->user->name }} </td>
+                        @else
+                          <td> {{ $class->user->name }} </td>
+                        @endif
+                        <td> 
+                          <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
+                          <a href="{{ route('receptionist.class.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit {{ $class->name }}"><i class="mdi mdi-pencil"></i></a>  
+                          <a href="{{ route('receptionist.class.image-request.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit Image {{ $class->name }}"><i class="mdi mdi-image-broken"></i></a>
+                          <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $class->id }})" data-toggle="tooltip" data-placement="bottom" title="Request Delete {{ $class->name }}">
+                            <i class="mdi mdi-close"></i>
+                          </button>
+                          <form id="delete-form-{{ $class->id }}" action="{{ route('receptionist.class.requestdelete',$class->id) }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                        </td>
+                      </tr>
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+            @else
+              <center class="text-black">No Any Class Data, <a href="{{ route('receptionist.class.create') }}" class="text-black">Request Here</a></center>
+            @endif
           </div>
         </div>
       @else

@@ -61,7 +61,7 @@
               </table>
             </div>
           @else
-            <center>No Any Data</center>
+            <center class="text-black">No Any Data</center>
           @endif
         </div>
       </div>
@@ -164,7 +164,7 @@
               </table>
             </div>
           @else
-            <center>No Any Request</center>
+            <center class="text-black">No Any Request</center>
           @endif
         </div>
       </div>
@@ -253,7 +253,7 @@
               </table>
             </div>
           @else
-            <center>No Any Request</center>
+            <center class="text-black">No Any Request</center>
           @endif
         </div>
       </div>
@@ -297,7 +297,7 @@
               </table>
             </div>
           @else
-            <center>No Any Request</center>
+            <center class="text-black">No Any Request</center>
           @endif
         </div>
       </div>

@@ -75,7 +75,7 @@
                   </tbody>
                 </table><br><br>
               @else 
-                <p class="text-center">Sorry, Data is Not Available</p>
+                <center class="text-black">No Any Room Number Data</center>
               @endif
             </div>
           </div>

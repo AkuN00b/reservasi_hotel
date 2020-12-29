@@ -61,7 +61,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Data</center>
+              <center class="text-black">No Any Data</center>
             @endif
           </div>
         </div>
@@ -164,7 +164,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>
@@ -174,43 +174,43 @@
             Active Request
           </div>
           <div class="card-body" style="background-color: #99bff0">
-            <div class="table-responsive">
-              <table class="table table-bordered text-nowrap display" id="table_idd">
-                <thead>
-                  <tr>
-                    <th> # </th>
-                    <th> Name </th>
-                    <th> Amount of Person </th>
-                    <th> Request by </th>
-                    <th> Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @php $no = 1; @endphp
-                  @foreach ($bed_active as $bed)
-                    @if ($bed->user->role->id == 2)
-                      <tr class="text-black">
-                        <td> {{ $no++ }} </td>
-                        <td> {{ $bed->name }} </td>
-                        <td> {{ $bed->person }} </td>
-                        <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
-                        <td> 
-                          <a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a>   
-                          <a href="{{ route('admin.bed.edit',$bed->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $bed->name }}"><i class="mdi mdi-pencil"></i></a>  
-                          <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $bed->id }})" data-toggle="tooltip" data-placement="bottom" title="Delete {{ $bed->name }}">
-                            <i class="mdi mdi-close"></i>
-                          </button>
-                          <form id="delete-form-{{ $bed->id }}" action="{{ route('admin.bed.destroy',$bed->id) }}" method="POST" style="display: none;">
-                              @csrf
-                              @method('DELETE')
-                          </form>
-                        </td>
-                      </tr>
-                    @endif
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
+              <div class="table-responsive">
+                <table class="table table-bordered text-nowrap display" id="table_idd">
+                  <thead>
+                    <tr>
+                      <th> # </th>
+                      <th> Name </th>
+                      <th> Amount of Person </th>
+                      <th> Request by </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($bed_active as $bed)
+                      @if ($bed->user->role->id == 2)
+                        <tr class="text-black">
+                          <td> {{ $no++ }} </td>
+                          <td> {{ $bed->name }} </td>
+                          <td> {{ $bed->person }} </td>
+                          <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
+                          <td> 
+                            <a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a>   
+                            <a href="{{ route('admin.bed.edit',$bed->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $bed->name }}"><i class="mdi mdi-pencil"></i></a>  
+                            <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $bed->id }})" data-toggle="tooltip" data-placement="bottom" title="Delete {{ $bed->name }}">
+                              <i class="mdi mdi-close"></i>
+                            </button>
+                            <form id="delete-form-{{ $bed->id }}" action="{{ route('admin.bed.destroy',$bed->id) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                          </td>
+                        </tr>
+                      @endif
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
           </div>
         </div>
 
@@ -253,7 +253,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>
@@ -297,7 +297,7 @@
                 </table>
               </div>
             @else
-              <center>No Any Request</center>
+              <center class="text-black">No Any Request</center>
             @endif
           </div>
         </div>

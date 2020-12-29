@@ -69,7 +69,6 @@
             Active Request
           </div>
           <div class="card-body" style="background-color: #c39aef">
-            @if ($class_active->count() > 0)
               <div class="table-responsive">
                 <table class="table table-bordered text-nowrap display" id="table_idd">
                   <thead>
@@ -111,9 +110,6 @@
                   </tbody>
                 </table>
               </div>
-            @else
-              <center class="text-black">No Any Request</center>
-            @endif
           </div>
         </div>
 

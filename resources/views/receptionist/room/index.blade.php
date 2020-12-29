@@ -22,43 +22,47 @@
           Room Category
         </div>
         <div class="card-body" style="background-color: #aec9ef">
-          <div class="table-responsive">
-            <table class="table table-bordered text-nowrap display" id="table_id">
-              <thead>
-                <tr>
-                  <th> # </th>
-                  <th> Name </th>
-                  <th> Price </th>
-                  <th> Last Updated by </th>
-                  <th> Action </th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($rooms as $key=>$room)
-                  <tr class="text-black">
-                    <td> {{ $key + 1 }} </td>
-                    <td> {{ $room->class->name }}({{ $room->bed->name }}) </td>
-                    <td> @uang($room->price) </td>
-                    @if (Auth::user()->name == $room->user->name)
-                      <td class="text-success"> {{ $room->user->name }} </td>
-                    @else
-                      <td> {{ $room->user->name }} </td>
-                    @endif
-                    <td> 
-                      <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a>   
-                      <a href="{{ route('receptionist.room.edit',$room->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-pencil"></i></a>  
-                      <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteRoom({{ $room->id }})" data-toggle="tooltip" data-placement="bottom" title="Request Delete {{ $room->class->name }}({{ $room->bed->name }})">
-                        <i class="mdi mdi-close"></i>
-                      </button>
-                      <form id="delete-form-{{ $room->id }}" action="{{ route('receptionist.room.requestdelete',$room->id) }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
-                    </td>
+          @if ($rooms->count() > 0)
+            <div class="table-responsive">
+              <table class="table table-bordered text-nowrap display" id="table_id">
+                <thead>
+                  <tr>
+                    <th> # </th>
+                    <th> Name </th>
+                    <th> Price </th>
+                    <th> Last Updated by </th>
+                    <th> Action </th>
                   </tr>
-                  @endforeach
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  @foreach ($rooms as $key=>$room)
+                    <tr class="text-black">
+                      <td> {{ $key + 1 }} </td>
+                      <td> {{ $room->class->name }}({{ $room->bed->name }}) </td>
+                      <td> @uang($room->price) </td>
+                      @if (Auth::user()->name == $room->user->name)
+                        <td class="text-success"> {{ $room->user->name }} </td>
+                      @else
+                        <td> {{ $room->user->name }} </td>
+                      @endif
+                      <td> 
+                        <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a>   
+                        <a href="{{ route('receptionist.room.edit',$room->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-pencil"></i></a>  
+                        <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteRoom({{ $room->id }})" data-toggle="tooltip" data-placement="bottom" title="Request Delete {{ $room->class->name }}({{ $room->bed->name }})">
+                          <i class="mdi mdi-close"></i>
+                        </button>
+                        <form id="delete-form-{{ $room->id }}" action="{{ route('receptionist.room.requestdelete',$room->id) }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                      </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
+          @else
+            <center class="text-black">No Any Room Data, <a href="{{ route('receptionist.room.create') }}" class="text-black">Request Here</a></center>
+          @endif
         </div>
       </div>
     @else
@@ -185,7 +189,7 @@
                           <strong class="text-danger">Delete Request. Thanks for Request :))</strong>
                         @endif
                       </td>
-                      <td> @uang($room->price) </td> Thanks for Request :))
+                      <td> @uang($room->price) </td>
                       <td> <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a> </td>
                     </tr>
                   @endforeach

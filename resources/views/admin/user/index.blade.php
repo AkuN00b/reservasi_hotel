@@ -19,6 +19,7 @@
                 User Data List
             </div>
             <div class="card-body" style="background-color: #aec9ef">
+                @if ($users->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-bordered text-nowrap display" id="table_id">
                       <thead>
@@ -70,6 +71,9 @@
                       </tbody>
                     </table>
                 </div>
+                @else
+                    <center class="text-black">No Any User Data</center>
+                @endif
             </div>
         </div>
     </div>
