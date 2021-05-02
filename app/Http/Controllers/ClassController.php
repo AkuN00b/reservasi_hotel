@@ -30,7 +30,8 @@ class ClassController extends Controller
         $classes = Classs::where('slug', $class_slug)->where('id', $class_id)->where('status', 1)->first();
         $beds = Bed::where('slug', $bed_slug)->where('id', $bed_id)->where('status', 1)->first();
         $roomnumber = RoomNumber::where('room_id', $id)
-                                ->where('status', 1)->get();
+                                ->where('status', 1)
+                                ->where('req_status', 1)->get();
 
         $classs = Classs::where('status', 1)->get();
         

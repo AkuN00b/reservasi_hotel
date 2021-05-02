@@ -2,8 +2,8 @@
 -- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- 생성 시간: 20-12-28 19:03
+-- Host: 127.0.0.1:3307
+-- 생성 시간: 21-05-02 11:17
 -- 서버 버전: 10.4.11-MariaDB
 -- PHP 버전: 7.4.1
 
@@ -79,6 +79,8 @@ CREATE TABLE `booking` (
   `jenis_kelamin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_awal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tgl_akhir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `durasi` int(11) NOT NULL,
+  `total` int(25) NOT NULL,
   `bed_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
@@ -94,15 +96,11 @@ CREATE TABLE `booking` (
 -- 테이블의 덤프 데이터 `booking`
 --
 
-INSERT INTO `booking` (`id`, `user_id`, `role_id`, `name`, `email`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `tgl_awal`, `tgl_akhir`, `bed_id`, `class_id`, `room_id`, `room_number_id`, `image`, `status`, `transaction_id`, `created_at`, `updated_at`) VALUES
-(21, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2020-12-02', '2020-12-22', 1, 2, 6, '14', '2020-11-30-5fc46bef29879.jpg', 4, '80481864734', '2020-11-29 20:46:45', '2020-11-29 21:02:15'),
-(22, 4, 1, 'qwertyui', 'qwertyu@mail.co', 'KTP', '23456756453', 'Bogor', 'Perempuan', '2020-12-03', '2020-12-15', 4, 4, 13, '33', NULL, 4, '-', '2020-11-30 17:52:40', '2020-11-30 18:09:55'),
-(23, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2020-12-02', '2020-12-09', 4, 4, 13, '33', '2020-12-02-5fc6f511bf489.jpg', 4, '31396237682', '2020-11-30 18:27:54', '2020-12-01 19:02:48'),
-(24, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2020-12-05', '2020-12-13', 2, 1, 3, '12', '2020-12-04-5fc9ffec2e897.jpg', 4, '24071612356', '2020-12-02 20:12:22', '2020-12-04 02:27:07'),
-(25, 5, 2, 'cacang', 'cacang@mail.id', 'Passport', '23904239083240', 'Bunga Mawar No. 99', 'Perempuan', '2020-12-06', '2020-12-22', 3, 4, 12, '32', NULL, 4, '-', '2020-12-04 02:14:50', '2020-12-04 02:16:41'),
-(26, 5, 2, 'dudung', 'dudung@jkt.id', 'KTP', '23984932093', 'Gajah Mungkur No. 291', 'Laki-laki', '2020-12-05', '2020-12-23', 3, 4, 12, '31', NULL, 4, '-', '2020-12-04 02:17:59', '2020-12-04 02:18:15'),
-(27, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2020-12-17', '2021-01-06', 2, 1, 3, '11', '2020-12-16-5fd9d6ffb9120.jpg', 4, '92043779989', '2020-12-16 02:31:17', '2020-12-16 02:51:26'),
-(28, 4, 1, 'aslwke', 'df@mfa.co', 'SIM', '4567890987654', 'Jalan Melati Nomor 7', 'Laki-laki', '2020-12-18', '2020-12-20', 3, 4, 12, '31', NULL, 4, '-', '2020-12-16 02:52:52', '2020-12-16 02:54:22');
+INSERT INTO `booking` (`id`, `user_id`, `role_id`, `name`, `email`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `tgl_awal`, `tgl_akhir`, `durasi`, `total`, `bed_id`, `class_id`, `room_id`, `room_number_id`, `image`, `status`, `transaction_id`, `created_at`, `updated_at`) VALUES
+(29, 4, 1, 'Gerlando Corputty', 'lele@blog.com', 'SIM', '1234567564389', 'Bogor', 'Laki-laki', '2021-01-19', '2021-01-21', 2, 4000000, 2, 2, 7, '18', NULL, 4, '-', '2021-01-18 04:35:12', '2021-01-18 04:43:39'),
+(30, 5, 2, 'Budi', 'budi@mail.com', 'KTP', '23456543212332', 'Jalan Melati Nomor 7', 'Laki-laki', '2021-01-20', '2021-01-25', 5, 28500000, 3, 5, 16, '39', NULL, 4, '-', '2021-01-18 04:45:47', '2021-01-18 04:46:55'),
+(32, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2021-01-20', '2021-02-02', 13, 13000000, 1, 1, 1, '7', '2021-01-18-600578f1bc574.jpg', 4, '13272941874', '2021-01-18 04:58:35', '2021-01-18 05:04:26'),
+(33, 6, 3, 'Customer Hotel', 'customerhotel@gmail.com', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', '2021-04-13', '2021-04-15', 2, 4200000, 1, 3, 8, '20', '2021-04-11-6072cdc015f39.jpg', 4, '39673006129', '2021-04-11 10:04:49', '2021-04-11 10:24:52');
 
 -- --------------------------------------------------------
 
@@ -129,11 +127,11 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`id`, `name`, `slug`, `desc`, `image`, `user_id`, `user_image_id`, `class_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Standard', 'standard', '<p><span style=\"color: #000000; font-family: tahoma, arial, helvetica, sans-serif; font-size: 12pt;\">Standard Class merupakan kelas yang berfasilitas standar dan dengan harga sewa yang murah, walau begitu kelas standar ini tidak kalah dengan kelas yang diatasnya. Standard Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>\r\n<p><span style=\"color: #000000; font-family: tahoma, arial, helvetica, sans-serif; font-size: 12pt;\">Ini dia fasilitas dari kamar ini:</span></p>', 'standard-2020-09-24-5f6ccd6423aac.jpg', 4, NULL, NULL, 1, '2020-09-05 09:27:54', '2020-11-09 02:31:53'),
-(2, 'Superior', 'superior', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Superior Class merupakan kelas yang berfasilitas diatas standar dan dengan harga sewa yang murah, walau begitu kelas superior ini tidak kalah dengan kelas yang diatasnya. Superior Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>\r\n<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Ini dia fasilitas dari kamar ini:</span></p>', 'superior-2020-09-24-5f6ccd812f2a3.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:10', '2020-10-02 11:49:08'),
-(3, 'Deluxe', 'deluxe', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Deluxe Class merupakan kelas yang berfasilitas hampir memasuki ekslusif&nbsp;dan dengan harga sewa yang terjangkau, walau begitu kelas Deluxe&nbsp;ini tidak kalah dengan kelas yang diatasnya. Deluxe Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>\r\n<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Ini dia fasilitas dari kamar ini:</span></p>', 'deluxe-2020-09-24-5f6ccd8d00bf4.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:21', '2020-10-02 11:49:57'),
-(4, 'Suite', 'suite', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Suite Class merupakan kelas yang berfasilitas eksklusif dan dengan harga sewa yang tinggi, walau kelas suite&nbsp;ini begitu mahal anda&nbsp;akan dibayar dengan fasilitas ekslusif dari kami sehingga anda tidak perlu khawatir. Suite Class memiliki empat pilihan kamar yaitu Single (1 Orang),&nbsp; Double (2 Orang), Main Family (5 Orang) dan Extended Family (10 Orang). </span></p>\r\n<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Ini dia fasilitas dari kamar ini:</span></p>', 'suite-2020-09-24-5f6ccd9ba93f0.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:30', '2020-10-02 11:51:28'),
-(5, 'Presidential Suite', 'presidential-suite', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Presidential Suite Class merupakan kelas yang berfasilitas eksklusif dan tertinggi di hotel ini dengan harga sewa yang tinggi, walau kelas presidential suite ini begitu mahal anda&nbsp;akan dibayar dengan fasilitas ekslusif dan terbaik dari kami sehingga anda tidak perlu khawatir. Presidential Suite Class memiliki empat pilihan kamar yaitu Single (1 Orang),&nbsp; Double (2 Orang), Main Family (5 Orang) dan Extended Family (10 Orang). </span></p>\r\n<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Ini dia fasilitas dari kamar ini:</span></p>', 'presidential-suite-2020-12-22-5fe210eaa4e84.jpg', 4, 4, NULL, 1, '2020-09-05 09:28:55', '2020-12-22 08:29:46'),
+(1, 'Standard', 'standard', '<p><span style=\"color: #000000; font-family: tahoma, arial, helvetica, sans-serif; font-size: 12pt;\">Standard Class merupakan kelas yang berfasilitas standar dan dengan harga sewa yang murah, walau begitu kelas standar ini tidak kalah dengan kelas yang diatasnya. Standard Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>', 'standard-2020-09-24-5f6ccd6423aac.jpg', 4, NULL, NULL, 1, '2020-09-05 09:27:54', '2021-04-11 09:38:27'),
+(2, 'Superior', 'superior', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Superior Class merupakan kelas yang berfasilitas diatas standar dan dengan harga sewa yang murah, walau begitu kelas superior ini tidak kalah dengan kelas yang diatasnya. Superior Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>', 'superior-2020-09-24-5f6ccd812f2a3.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:10', '2021-04-11 09:38:42'),
+(3, 'Deluxe', 'deluxe', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Deluxe Class merupakan kelas yang berfasilitas hampir memasuki ekslusif&nbsp;dan dengan harga sewa yang terjangkau, walau begitu kelas Deluxe&nbsp;ini tidak kalah dengan kelas yang diatasnya. Deluxe Class memiliki dua pilihan kamar yaitu Single (1 Orang) dan Double (2 Orang). </span></p>', 'deluxe-2020-09-24-5f6ccd8d00bf4.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:21', '2021-04-11 09:38:54'),
+(4, 'Suite', 'suite', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Suite Class merupakan kelas yang berfasilitas eksklusif dan dengan harga sewa yang tinggi, walau kelas suite&nbsp;ini begitu mahal anda&nbsp;akan dibayar dengan fasilitas ekslusif dari kami sehingga anda tidak perlu khawatir. Suite Class memiliki empat pilihan kamar yaitu Single (1 Orang),&nbsp; Double (2 Orang), Main Family (5 Orang) dan Extended Family (10 Orang). </span></p>', 'suite-2020-09-24-5f6ccd9ba93f0.jpg', 4, NULL, NULL, 1, '2020-09-05 09:28:30', '2021-04-11 09:39:05'),
+(5, 'Presidential Suite', 'presidential-suite', '<p><span style=\"color: #000000; font-size: 12pt; font-family: tahoma, arial, helvetica, sans-serif;\">Presidential Suite Class merupakan kelas yang berfasilitas eksklusif dan tertinggi di hotel ini dengan harga sewa yang tinggi, walau kelas presidential suite ini begitu mahal anda&nbsp;akan dibayar dengan fasilitas ekslusif dan terbaik dari kami sehingga anda tidak perlu khawatir. Presidential Suite Class memiliki empat pilihan kamar yaitu Single (1 Orang),&nbsp; Double (2 Orang), Main Family (5 Orang) dan Extended Family (10 Orang). </span></p>', 'presidential-suite-2020-12-22-5fe210eaa4e84.jpg', 4, 4, NULL, 1, '2020-09-05 09:28:55', '2021-04-11 09:39:15'),
 (56, 'dfvvdf', 'Create Req.', '<p>dfvdfdf</p>', 'dfvvdf-2020-12-23-5fe33b50f18ae.jpg', 5, NULL, NULL, 9, '2020-12-23 05:42:57', '2020-12-23 05:46:31'),
 (58, 'cesdcdscd', 'Create Req.', '<p>sdsdsscdsc</p>', 'cesdcdscd-2020-12-23-5fe33c5909e49.jpg', 5, NULL, 57, 2, '2020-12-23 05:47:40', '2020-12-23 05:47:40'),
 (59, 'class tess editttt', 'class-tess-editttt', '<p>class tess editttttttt</p>', 'class-tess-2020-12-23-5fe33ee217aff.jpg', 5, 5, NULL, 1, '2020-12-23 05:48:26', '2020-12-23 06:00:42'),
@@ -210,7 +208,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2020_12_04_093311_add_fill_to_bed_table', 18),
 (24, '2020_12_04_093443_add_fill_to_class_table', 18),
 (25, '2020_12_04_093606_add_fill_to_room_table', 18),
-(26, '2020_12_22_140653_add_user_image_id_to_class_table', 19);
+(26, '2020_12_22_140653_add_user_image_id_to_class_table', 19),
+(27, '2021_01_04_090822_add_fill_in_room_number_table', 20),
+(28, '2021_01_04_091049_add_fill_in_user_table', 21),
+(29, '2021_01_18_105303_add_durasi_and_total_to_booking_table', 22);
 
 -- --------------------------------------------------------
 
@@ -291,7 +292,9 @@ INSERT INTO `room` (`id`, `class_id`, `bed_id`, `price`, `user_id`, `room_id`, `
 (28, 59, 2, 100000, 5, 24, 'Create Req.', 2, '2020-12-28 00:35:47', '2020-12-28 00:35:47'),
 (29, 59, 2, 100000, 5, 24, 'Delete Req.', 2, '2020-12-28 00:37:55', '2020-12-28 00:38:48'),
 (30, 2, 4, 6600000, 5, 17, 'Edit Req.', 9, '2020-12-28 00:39:42', '2020-12-28 00:40:24'),
-(31, 1, 3, 14499000, 5, NULL, 'Create Req.', 9, '2020-12-28 00:39:58', '2020-12-28 00:40:30');
+(31, 1, 3, 14499000, 5, NULL, 'Create Req.', 9, '2020-12-28 00:39:58', '2020-12-28 00:40:30'),
+(32, 2, 2, 14499000, 4, NULL, NULL, 1, '2021-01-23 09:02:41', '2021-01-23 09:02:41'),
+(33, 1, 4, 12999000, 4, NULL, NULL, 1, '2021-04-11 11:29:04', '2021-04-11 11:29:04');
 
 -- --------------------------------------------------------
 
@@ -303,7 +306,10 @@ CREATE TABLE `room_number` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `room_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `room_number_id` int(11) DEFAULT NULL,
+  `req_status` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -312,42 +318,65 @@ CREATE TABLE `room_number` (
 -- 테이블의 덤프 데이터 `room_number`
 --
 
-INSERT INTO `room_number` (`id`, `name`, `room_id`, `status`, `created_at`, `updated_at`) VALUES
-(4, '101', 1, 1, '2020-11-16 22:54:13', '2020-11-16 22:54:13'),
-(7, '102', 1, 1, '2020-11-16 22:59:10', '2020-11-16 22:59:10'),
-(8, '103', 1, 1, '2020-11-16 23:06:17', '2020-11-16 23:06:17'),
-(9, '104', 1, 1, '2020-11-16 23:06:28', '2020-11-16 23:06:28'),
-(10, '105', 3, 1, '2020-11-16 23:06:40', '2020-11-16 23:06:40'),
-(11, '106', 3, 1, '2020-11-16 23:07:03', '2020-12-16 02:51:26'),
-(12, '107', 3, 1, '2020-11-16 23:07:30', '2020-12-04 02:27:07'),
-(13, '201', 6, 1, '2020-11-16 23:08:16', '2020-11-25 23:19:08'),
-(14, '202', 6, 1, '2020-11-16 23:08:29', '2020-11-29 21:02:15'),
-(15, '203', 6, 1, '2020-11-16 23:08:43', '2020-11-16 23:08:43'),
-(16, '204', 6, 1, '2020-11-16 23:17:09', '2020-11-16 23:17:09'),
-(17, '205', 7, 1, '2020-11-16 23:19:22', '2020-11-16 23:19:22'),
-(18, '206', 7, 1, '2020-11-16 23:19:33', '2020-11-16 23:19:33'),
-(19, '207', 7, 1, '2020-11-16 23:19:54', '2020-11-16 23:19:54'),
-(20, '301', 8, 1, '2020-11-16 23:20:47', '2020-11-16 23:20:47'),
-(21, '302', 8, 1, '2020-11-16 23:20:57', '2020-11-16 23:20:57'),
-(22, '303', 8, 1, '2020-11-16 23:21:07', '2020-11-16 23:21:07'),
-(23, '304', 8, 1, '2020-11-16 23:21:16', '2020-11-16 23:21:16'),
-(24, '305', 9, 1, '2020-11-16 23:21:27', '2020-11-16 23:21:27'),
-(25, '306', 9, 1, '2020-11-16 23:21:36', '2020-11-29 19:33:10'),
-(26, '307', 9, 1, '2020-11-16 23:21:45', '2020-11-16 23:21:45'),
-(27, '401', 10, 1, '2020-11-17 08:06:05', '2020-11-17 08:06:05'),
-(28, '402', 10, 1, '2020-11-17 08:06:33', '2020-11-17 08:06:33'),
-(29, '403', 11, 1, '2020-11-17 08:06:44', '2020-11-17 08:06:44'),
-(30, '404', 11, 1, '2020-11-17 08:06:57', '2020-11-17 08:06:57'),
-(31, '405', 12, 1, '2020-11-17 08:07:17', '2020-12-16 02:54:22'),
-(32, '406', 12, 1, '2020-11-17 08:07:30', '2020-12-04 02:16:41'),
-(33, '407', 13, 1, '2020-11-17 08:07:42', '2020-12-01 19:02:48'),
-(34, '501', 14, 1, '2020-11-17 08:07:59', '2020-11-17 08:07:59'),
-(35, '502', 14, 1, '2020-11-17 08:08:12', '2020-11-17 08:08:12'),
-(36, '503', 15, 1, '2020-11-17 08:08:57', '2020-11-17 08:08:57'),
-(37, '504', 15, 1, '2020-11-17 08:09:05', '2020-11-17 08:09:05'),
-(38, '505', 16, 1, '2020-11-17 08:09:20', '2020-11-17 08:09:20'),
-(39, '506', 16, 1, '2020-11-17 08:09:30', '2020-11-17 08:09:30'),
-(40, '507', 17, 1, '2020-11-17 08:09:44', '2020-11-17 08:09:44');
+INSERT INTO `room_number` (`id`, `name`, `room_id`, `status`, `user_id`, `room_number_id`, `req_status`, `created_at`, `updated_at`) VALUES
+(4, '101', 1, '1', 4, NULL, 1, '2020-11-16 22:54:13', '2021-01-27 13:35:37'),
+(7, '102', 1, '1', 4, NULL, 1, '2020-11-16 22:59:10', '2021-01-18 05:04:26'),
+(8, '103', 1, '1', 4, NULL, 1, '2020-11-16 23:06:17', '2020-11-16 23:06:17'),
+(9, '104', 1, '1', 4, NULL, 1, '2020-11-16 23:06:28', '2020-11-16 23:06:28'),
+(10, '105', 3, '1', 4, NULL, 1, '2020-11-16 23:06:40', '2020-11-16 23:06:40'),
+(11, '106', 3, '1', 4, NULL, 1, '2020-11-16 23:07:03', '2021-01-09 00:25:05'),
+(12, '107', 3, '1', 4, NULL, 1, '2020-11-16 23:07:30', '2020-12-04 02:27:07'),
+(13, '201', 6, '1', 4, NULL, 1, '2020-11-16 23:08:16', '2020-11-25 23:19:08'),
+(14, '202', 6, '1', 4, NULL, 1, '2020-11-16 23:08:29', '2021-01-08 08:49:51'),
+(15, '203', 6, '1', 4, NULL, 1, '2020-11-16 23:08:43', '2021-01-08 08:49:56'),
+(16, '204', 6, '1', 4, NULL, 1, '2020-11-16 23:17:09', '2020-11-16 23:17:09'),
+(17, '205', 7, '1', 4, NULL, 1, '2020-11-16 23:19:22', '2020-11-16 23:19:22'),
+(18, '206', 7, '1', 4, NULL, 1, '2020-11-16 23:19:33', '2021-01-18 04:43:39'),
+(19, '207', 7, '1', 4, NULL, 1, '2020-11-16 23:19:54', '2020-11-16 23:19:54'),
+(20, '301', 8, '1', 4, NULL, 1, '2020-11-16 23:20:47', '2021-04-11 10:24:52'),
+(21, '302', 8, '1', 4, NULL, 1, '2020-11-16 23:20:57', '2020-11-16 23:20:57'),
+(22, '303', 8, '1', 4, NULL, 1, '2020-11-16 23:21:07', '2020-11-16 23:21:07'),
+(23, '304', 8, '1', 4, NULL, 1, '2020-11-16 23:21:16', '2020-11-16 23:21:16'),
+(24, '305', 9, '1', 4, NULL, 1, '2020-11-16 23:21:27', '2020-11-16 23:21:27'),
+(25, '306', 9, '1', 4, NULL, 1, '2020-11-16 23:21:36', '2020-11-29 19:33:10'),
+(26, '307', 9, '1', 4, NULL, 1, '2020-11-16 23:21:45', '2020-11-16 23:21:45'),
+(27, '401', 10, '1', 4, NULL, 1, '2020-11-17 08:06:05', '2020-11-17 08:06:05'),
+(28, '402', 10, '1', 4, NULL, 1, '2020-11-17 08:06:33', '2020-11-17 08:06:33'),
+(29, '403', 11, '1', 4, NULL, 1, '2020-11-17 08:06:44', '2020-11-17 08:06:44'),
+(30, '404', 11, '1', 4, NULL, 1, '2020-11-17 08:06:57', '2020-11-17 08:06:57'),
+(31, '405', 12, '1', 4, NULL, 1, '2020-11-17 08:07:17', '2020-12-16 02:54:22'),
+(32, '406', 12, '1', 4, NULL, 1, '2020-11-17 08:07:30', '2020-12-04 02:16:41'),
+(33, '407', 13, '1', 4, NULL, 1, '2020-11-17 08:07:42', '2020-12-01 19:02:48'),
+(34, '501', 14, '1', 4, NULL, 1, '2020-11-17 08:07:59', '2020-11-17 08:07:59'),
+(35, '502', 14, '1', 4, NULL, 1, '2020-11-17 08:08:12', '2020-11-17 08:08:12'),
+(36, '503', 15, '1', 4, NULL, 1, '2020-11-17 08:08:57', '2020-11-17 08:08:57'),
+(37, '504', 15, '1', 4, NULL, 1, '2020-11-17 08:09:05', '2020-11-17 08:09:05'),
+(38, '505', 16, '1', 4, NULL, 1, '2020-11-17 08:09:20', '2020-11-17 08:09:20'),
+(39, '506', 16, '1', 4, NULL, 1, '2020-11-17 08:09:30', '2021-01-18 04:46:55'),
+(40, '507', 17, '1', 4, NULL, 1, '2020-11-17 08:09:44', '2021-01-09 22:30:37'),
+(76, '1011-r', 14, 'Create Req.', 5, NULL, 9, '2021-01-07 21:52:55', '2021-01-07 21:55:32'),
+(78, '2022-r', 13, 'Create Req.', 5, 77, 2, '2021-01-07 21:55:38', '2021-01-07 21:55:38'),
+(79, '2022-r', 13, 'Edit Req.', 5, 77, 2, '2021-01-07 22:31:23', '2021-01-07 22:32:55'),
+(80, '20221-r', 15, 'Edit Req.', 5, 77, 2, '2021-01-07 22:31:48', '2021-01-07 22:33:39'),
+(81, '20224-r', 13, 'Edit Req.', 5, 77, 2, '2021-01-07 22:32:28', '2021-01-07 22:33:46'),
+(82, '2022-r', 16, 'Edit Req.', 5, 77, 2, '2021-01-07 22:32:35', '2021-01-07 22:33:13'),
+(83, '20224-r', 17, 'Edit Req.', 5, 77, 9, '2021-01-07 22:34:01', '2021-01-07 22:34:23'),
+(84, '333-r', 8, 'Edit Req.', 5, 77, 9, '2021-01-07 22:34:12', '2021-01-07 22:34:28'),
+(85, '20224-r', 13, 'Delete Req.', 5, 77, 2, '2021-01-07 22:35:21', '2021-01-07 22:36:02'),
+(86, '20224-r', 13, 'Delete Req.', 5, 77, 9, '2021-01-07 22:35:33', '2021-01-07 22:35:51'),
+(88, '333-r', 15, 'Create Req.', 5, 87, 2, '2021-01-08 08:50:20', '2021-01-08 08:50:20'),
+(90, '1011-r', 7, 'Create Req.', 5, 89, 2, '2021-01-09 22:00:50', '2021-01-09 22:00:50'),
+(91, '1111-r', 15, 'Create Req.', 5, NULL, 9, '2021-01-09 22:01:14', '2021-01-09 22:01:20'),
+(92, '333-r', 10, 'Edit Req.', 5, 87, 2, '2021-01-09 22:02:28', '2021-01-09 22:03:07'),
+(93, '333-r', 13, 'Edit Req.', 5, 87, 2, '2021-01-09 22:02:54', '2021-01-09 22:03:12'),
+(95, '1023-r', 13, 'Create Req.', 5, 94, 2, '2021-01-09 22:25:37', '2021-01-09 22:25:37'),
+(97, '10113-r', 15, 'Create Req.', 5, 96, 2, '2021-01-09 22:26:10', '2021-01-09 22:26:10'),
+(98, '507-r', 17, 'Delete Req.', 5, 40, 9, '2021-01-09 22:29:31', '2021-01-09 22:29:57'),
+(99, '333-r', 13, 'Delete Req.', 5, 87, 2, '2021-01-09 22:29:45', '2021-01-09 22:30:06'),
+(100, '10113', 7, '9', 5, NULL, 1, '2021-01-09 22:30:59', '2021-01-09 22:33:47'),
+(101, '10113-r', 16, 'Create Req.', 5, 100, 2, '2021-01-09 22:31:08', '2021-01-09 22:31:08'),
+(102, '10113-r', 7, 'Edit Req.', 5, 100, 2, '2021-01-09 22:32:03', '2021-01-09 22:33:47'),
+(103, '10113-r', 3, 'Edit Req.', 5, 100, 2, '2021-01-09 22:32:31', '2021-01-09 22:33:43');
 
 -- --------------------------------------------------------
 
@@ -368,6 +397,10 @@ CREATE TABLE `users` (
   `role_id` int(11) NOT NULL DEFAULT 3,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `about` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL,
+  `req_status` int(11) DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -377,12 +410,21 @@ CREATE TABLE `users` (
 -- 테이블의 덤프 데이터 `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `username`, `email`, `password`, `role_id`, `image`, `about`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin Hotel', 'KTP', '123456756438912', 'Gunung Putri, Bogor', 'Laki-laki', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$uGxQDhccrfJmLM7QjwFS9OVcvWjERYW73XDr8drNrwBTc6hPFIoAe', 1, 'default.png', 'Aku adalah Admin ke 1', 'zArMitnC7WZsNNH84DvcIekW7QTS1dLzUaE7U48DukVMxEe2AiIAxt4UxnBt', NULL, '2020-11-06 10:30:48'),
-(5, 'Receptionist Hotel', 'SIM', '92897423909237', 'Bojong Gede, Bogor', 'Perempuan', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$jcp09ZY2uzVlTeV09nEeheQuhndhQ1DVLWnkuPF7D33w6vFzTHoY6', 2, 'default.png', 'Aku adalah Receptionist ke 1', 'iEPvbD0ZBwsU7NGp0JCcVDYYNUUiFybuGumIEC1MLPNrG142G7uaKaT4olgt', NULL, '2020-11-06 10:47:26'),
-(6, 'Customer Hotel', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$kMgfpI6cvnEFDeW4VN/HL.UCMDCeG4zn6P9gEh2/HZ0o8.O31.Obm', 3, 'default.png', 'Aku adalah Customer ke 1', 'RWWeEgCHRHr4XECAU50QqBtzjlal0QRX57tlt1xSpfAoHItVXBbUxHfpVsYU', NULL, '2020-11-06 10:55:35'),
-(8, 'Budi', 'KTP', '32948329843298', 'Jogja', 'Laki-laki', 'password_user', 'budi@mail.com', '$2y$10$EbETlWz8WlyMaWfa3e8CHuK8ZDUCTh7XXPonj/eYy5yeZ4WgQyN0a', 3, 'default.png', 'Aku adalah Customer ke 2', NULL, '2020-11-13 16:45:46', '2020-11-13 18:24:04'),
-(9, 'Abdi Hasan', 'SIM', '239832894732', 'Ciampea, Jawa Barat', 'Laki-laki', 'hasan.abdi', 'hasan.abdi@yahoo.com', '$2y$10$p3bp9LqZZFzL.E3CRZFZ8ef/NEYof3hlRU4bjchqU..ncLAXeCMoe', 2, 'default.png', 'Aku adalah Receptionist ke 2', 'zrfISi3vuS6fJqvBudzMnf1Krfgl5FBrjSZTaoiaXc5OuWea4rlx3Jv1Figd', '2020-11-13 16:49:08', '2020-11-13 18:30:19');
+INSERT INTO `users` (`id`, `name`, `identitas`, `no_identitas`, `alamat`, `jenis_kelamin`, `username`, `email`, `password`, `role_id`, `image`, `about`, `status`, `user_id`, `users_id`, `req_status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(4, 'Admin Hotel', 'KTP', '123456756438912', 'Gunung Putri, Bogor', 'Laki-laki', 'adminhotel11', 'adminhotel@gmail.com', '$2y$10$uGxQDhccrfJmLM7QjwFS9OVcvWjERYW73XDr8drNrwBTc6hPFIoAe', 1, 'adminhotel11-2021-01-13-5ffe937165a43.jpg', 'Aku adalah Admin ke 1', 1, 4, NULL, 1, 'zMdlHjKG3WmfVpLRVYECysuRzT4kZp7qYIBOHDCTGYs2HD6RRHL7jisCI83Q', NULL, '2021-01-12 23:30:09'),
+(5, 'Receptionist Hotel', 'KTP', '13245665433442', 'Jogja', 'Perempuan', 'receptionisthotel22', 'receptionisthotel@gmail.com', '$2y$10$W0qC1ow2gvt6sG5q/Y51A.1vJPZ5EftEmqSySTp5yzZsIECjqhEjS', 2, 'receptionisthotel22-2021-01-13-5ffe978ae3524.jfif', 'Aku adalah Receptionist ke 1', 1, 4, NULL, 1, 'NfxwljM4lLDscREwyUBYnSgG6Jdtq3OebEporWfoC6cBebgfPlUaEGo2QY4r', '2021-01-11 07:44:12', '2021-01-12 23:47:41'),
+(6, 'Customer Hotel', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', 'customerhotel33', 'customerhotel@gmail.com', '$2y$10$kMgfpI6cvnEFDeW4VN/HL.UCMDCeG4zn6P9gEh2/HZ0o8.O31.Obm', 3, 'customerhotel33-2021-01-13-5ffe9891a34ec.jpg', 'Aku adalah Customer ke 1', 1, 5, NULL, 1, 'RPj2NldQ15022c735CDGED3hBIhAqKyBZ2T5pHZQjvGPP8QSqPeyuVJ9RV6O', NULL, '2021-01-12 23:52:03'),
+(8, 'Budi', 'KTP', '32948329843298', 'Jogja', 'Laki-laki', 'password_user', 'budi@mail.com', '$2y$10$EbETlWz8WlyMaWfa3e8CHuK8ZDUCTh7XXPonj/eYy5yeZ4WgQyN0a', 3, 'password-user-2021-01-16-60031504e8b2d.jpg', 'Aku adalah Customer ke 2', 0, 5, NULL, 1, 'JnBs0RNRbUqBVR8EIlJD3PLK1uxm5kNoGIdTH9N2EQX9MZr5gbWPIaX0QYu7', '2020-11-13 16:45:46', '2021-01-16 09:32:05'),
+(9, 'Abdi Hasan', 'SIM', '239832894732', 'Ciampea, Jawa Barat', 'Laki-laki', 'hasan.abdi', 'hasan.abdi@yahoo.com', '$2y$10$p3bp9LqZZFzL.E3CRZFZ8ef/NEYof3hlRU4bjchqU..ncLAXeCMoe', 2, 'hasanabdi-2021-01-16-600314b244c59.jpg', 'Aku adalah Receptionist ke 2', 0, 4, NULL, 1, 'YswBjhOZuTBgEV2Lpsh9WIfH7sAbGhXgEp6yfwe1AJdh6FstIW52oqQOfLcT', '2020-11-13 16:49:08', '2021-01-16 09:30:42'),
+(13, 'Budi', 'KTP', '32948329843298', 'Jogja', 'Laki-laki', 'password_user', 'budi@mail.com', '0', 3, 'default.png', 'Aku adalah Customer ke 2', 0, 5, 8, 9, NULL, '2021-01-11 07:01:08', '2021-01-11 08:01:22'),
+(14, 'Budi', 'KTP', '32948329843298', 'Jogja', 'Laki-laki', 'password_user', 'budi@mail.com', '0', 3, 'default.png', 'Aku adalah Customer ke 2', 0, 5, 8, 9, NULL, '2021-01-11 07:02:10', '2021-01-11 08:00:03'),
+(17, 'test', 'SIM', '1234565432', 'Jalan Melati Nomor 7', 'Laki-laki', NULL, 'lele@blog.com', '0', 3, 'default.png', NULL, 0, 5, 16, 2, NULL, '2021-01-11 08:01:53', '2021-01-11 08:02:09'),
+(19, 'admin', 'SIM', '1234567564389222', 'Jalan Melati Nomor 7', 'Laki-laki', NULL, 'adminn@gmail.com', '0', 3, 'default.png', NULL, 0, 5, 18, 2, NULL, '2021-01-11 08:10:06', '2021-01-11 08:10:48'),
+(20, 'Budi', 'KTP', '32948329843298', 'Jogja', 'Laki-laki', 'password_user', 'budi@mail.com', '0', 3, 'password-user-2021-01-16-60031504e8b2d.jpg', 'Aku adalah Customer ke 2', 0, 5, 8, 9, NULL, '2021-01-17 21:35:33', '2021-01-17 21:37:12'),
+(21, 'Customer Hotel', 'Passport', '298219838387789', 'Tajur Halang, Bogor', 'Laki-laki', 'customerhotel33', 'customerhotel@gmail.com', '0', 3, 'customerhotel33-2021-01-13-5ffe9891a34ec.jpg', 'Aku adalah Customer ke 1', 0, 5, 6, 0, NULL, '2021-01-17 21:38:03', '2021-01-17 21:38:03'),
+(22, 'Laravel', 'KTP', '12345675643892', 'Bojong Gede, Bogor', 'Laki-laki', NULL, 'admin@admin.com', '$2y$10$t09ZsuJygjqANHxCFp9VjOIbeWhoN68TZ9tN5DQBRQFxpI3GDVbDi', 3, 'default.png', NULL, 1, 4, NULL, 1, NULL, '2021-01-24 06:58:29', '2021-01-24 06:58:29'),
+(24, 'Budi', 'KTP', '1234567564311', 'Bogor', 'Laki-laki', NULL, 'budi@mail.co.id', '0', 3, 'default.png', NULL, 0, 5, 23, 2, NULL, '2021-04-11 11:11:34', '2021-04-11 11:13:14'),
+(26, 'Dimas', 'KTP', '1234567562112', 'Bogor', 'Laki-laki', NULL, 'dimas@mail.co.id', '0', 3, 'default.png', NULL, 0, 5, 25, 2, NULL, '2021-04-11 11:18:14', '2021-04-11 11:20:01');
 
 --
 -- 덤프된 테이블의 인덱스
@@ -440,17 +482,13 @@ ALTER TABLE `room`
 -- 테이블의 인덱스 `room_number`
 --
 ALTER TABLE `room_number`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `room_number_name_unique` (`name`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 테이블의 인덱스 `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD UNIQUE KEY `users_username_unique` (`username`),
-  ADD UNIQUE KEY `users_no_identitas_unique` (`no_identitas`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 덤프된 테이블의 AUTO_INCREMENT
@@ -460,31 +498,31 @@ ALTER TABLE `users`
 -- 테이블의 AUTO_INCREMENT `bed`
 --
 ALTER TABLE `bed`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- 테이블의 AUTO_INCREMENT `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- 테이블의 AUTO_INCREMENT `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- 테이블의 AUTO_INCREMENT `dynamic_data`
 --
 ALTER TABLE `dynamic_data`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 테이블의 AUTO_INCREMENT `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- 테이블의 AUTO_INCREMENT `roles`
@@ -496,19 +534,19 @@ ALTER TABLE `roles`
 -- 테이블의 AUTO_INCREMENT `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- 테이블의 AUTO_INCREMENT `room_number`
 --
 ALTER TABLE `room_number`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- 테이블의 AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
               <label for="no_identitas">No Identitas</label>
-              <input type="text" class="form-control" id="no_identitas" name="no_identitas" placeholder="Nomor Identitas">
+              <input type="number" class="form-control" id="no_identitas" name="no_identitas" placeholder="Nomor Identitas">
             </div>
             <div class="form-group">
               <label for="alamat">Alamat</label>
@@ -44,7 +44,7 @@
               <label for="email">Email</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Email">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="show_hide_password">
               <label for="password">Password</label>
               <div class="input-group">
               <input type="password" class="form-control pwd" id="password" name="password" value="password_user" placeholder="Password">
@@ -61,3 +61,22 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#show_hide_password button").on('click', function(event) {
+          event.preventDefault();
+          if($('#show_hide_password input').attr("type") == "text"){
+              $('#show_hide_password input').attr('type', 'password');                
+              $('#show_hide_password i').removeClass( "mdi mdi-eye" );
+              $('#show_hide_password i').addClass( "mdi mdi-eye-off" );
+          }else if($('#show_hide_password input').attr("type") == "password"){
+              $('#show_hide_password input').attr('type', 'text');
+              $('#show_hide_password i').removeClass( "mdi mdi-eye-off" );
+              $('#show_hide_password i').addClass( "mdi mdi-eye" );
+          }
+      });
+  });
+  </script>
+@endpush

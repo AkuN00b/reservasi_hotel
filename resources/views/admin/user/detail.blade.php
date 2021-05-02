@@ -12,15 +12,48 @@
     <div class="container p-3">
         <div class="card">
             <div class="card-header">
-                Profile of <strong>{{ $user->username }}</strong> 
+                Profile of 
+                @if ($user->username == NULL)
+                    <strong>{{ $user->name }}</strong>
+                @else
+                    <strong>{{ $user->username }}</strong>
+                @endif
+
+                @if ($user->req_status != 1)
+                    || <strong class="text-danger">Delete Req.</strong>
+                @endif
+
+                @if ($user->req_status == 0)
+                    <sup><span class="badge badge-pill badge-warning ml-1" style="font-size: 12px;">Waiting for Confirmation</span></sup> 
+                @elseif ($user->req_status == 2)
+                    <sup><span class="badge badge-pill badge-success ml-1" style="font-size: 12px;">Accepted</span></sup> 
+                @elseif ($user->req_status == 9)
+                    <sup><span class="badge badge-pill badge-danger ml-1" style="font-size: 12px;">Canceled</span></sup> 
+                @endif
                 <span class="float-right">
                     Status:
+                    @if ($user->req_status == 0)
+                        @if ($user->users->status == 0)
+                            <sup><span class="badge badge-pill badge-danger float-right ml-1" style="font-size: 12px;">Non-Active</span></sup> 
+                        @elseif ($user->users->status == 1)
+                            <sup><span class="badge badge-pill badge-info float-right ml-1" style="font-size: 12px;">Active</span></sup> 
+                        @endif
+                    @elseif ($user->req_status == 1)
+                        @if ($user->status == 0)
+                            <sup><span class="badge badge-pill badge-danger float-right ml-1" style="font-size: 12px;">Non-Active</span></sup> 
+                        @elseif ($user->status == 1)
+                            <sup><span class="badge badge-pill badge-info float-right ml-1" style="font-size: 12px;">Active</span></sup> 
+                        @endif
+                    {{-- @else 
+                        <sup><span class="badge badge-pill badge-danger float-right ml-1" style="font-size: 12px;">Non-Active</span></sup>  --}}
+                    @endif
+
                     @if ($user->role->id == 1)
-                        <p class="text-success float-right ml-2" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p>
+                        <p class="text-success float-right ml-1" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p> 
                     @elseif ($user->role->id == 2)
-                        <p class="text-primary float-right ml-2" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p>
+                        <p class="text-primary float-right ml-1" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p> 
                     @elseif ($user->role->id == 3)
-                        <p class="text-warning float-right ml-2" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p>
+                        <p class="text-warning float-right ml-1" style="margin-top: 1px; font-size: 16px;">{{ $user->role->name }}</p> 
                     @endif
                 </span>
             </div>
@@ -30,10 +63,19 @@
                         <h6 class="mb-3 display-4">User Information:</h6>
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset('assets/backend/images/faces/'.$user->image) }}" alt="Gambar {{ $user->name }}" style="padding: 0;
-                                display: block;
-                                max-height: 100%;
-                                max-width: 100%;"><br><br>
+                                @if ($user->image == 'default.png')
+                                    <img src="{{ asset('storage/account/base/'.$user->image) }}" alt="Gambar {{ $user->name }}" style="padding: 0;
+                                    display: block;
+                                    margin: 0 auto;
+                                    max-height: 100%;
+                                    max-width: 100%;"><br><br>
+                                @else 
+                                    <img src="{{ asset('storage/account/'.$user->image) }}" alt="Gambar {{ $user->name }}" style="padding: 0;
+                                    display: block;
+                                    margin: 0 auto;
+                                    max-height: 100%;
+                                    max-width: 100%;"><br><br>
+                                @endif
                             </div>
                             <div class="col-lg-8">
                                 Full Name: <strong>{{ $user->name }}</strong> <br>
@@ -42,7 +84,27 @@
                                 Identity Number: {{ $user->no_identitas }} <br>
                                 Address: {{ $user->alamat }} <br>
                                 Gender: {{ $user->jenis_kelamin }} <br>
-                                About: {{ $user->about }} <br><br>
+                                About: {{ $user->about }} <br>
+                                Last Updated By: {{ $user->user->name }} <br>
+
+                                @if ($user->created_at == !NULL)
+                                    Created Time: {{ $user->created_at->format('d-m-Y - H:i:s') }} <br>
+                                @else
+                                    Created Time: No Data Available <br>
+                                @endif
+
+                                @if ($user->updated_at == !NULL)
+                                    @if ($user->req_status == 1)
+                                        Updated Time: {{ $user->updated_at->format('d-m-Y - H:i:s') }}
+                                    @elseif ($user->req_status == 2)
+                                        Accepted for Delete Req: {{ $user->updated_at->format('d-m-Y - H:i:s') }} 
+                                    @elseif ($user->req_status == 9)
+                                        Rejected for Delete Req: {{ $user->updated_at->format('d-m-Y - H:i:s') }} 
+                                    @endif <br>
+                                @else
+                                    Update Time: No Data Available <br>
+                                @endif <br>
+
                                 @if (Auth::user()->id == $user->id)
                                     <button type="button" class="btn btn-success btn-sm btn-icon-text">
                                         <a href="{{ route('admin.settings') }}" class="text-white" style="text-decoration: none;"><i class="mdi mdi-settings btn-icon-prepend"></i> Settings </a>

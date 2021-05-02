@@ -103,6 +103,7 @@ class BedController extends Controller
         $bed->person = $request->person;
         $bed->user_id = Auth::user()->id;
         $bed->bed_id = $request->bed_id;
+        $bed->user_id = Auth::user()->id;
         $bed->status = 0;
         $bed->save();
 

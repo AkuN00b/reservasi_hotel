@@ -41,9 +41,35 @@
                         <td> {{ $class->name }} </td>
                         <td> <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a> </td>
                         @if (Auth::user()->name == $class->user->name)
-                          <td> <a href="{{ route('admin.user.show',$class->user->id) }}" class="text-success">{{ $class->user->name }}</a> </td>
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                            <a href="{{ route('admin.user.show',$class->user->id) }}" class="text-success">
+                              {{ $class->user->name }} - 
+                              @if ($class->updated_at == NULL)
+                                {{ $class->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $class->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a> 
+                          </td>
                         @else
-                          <td> <a href="{{ route('admin.user.show',$class->user->id) }}" class="text-black">{{ $class->user->name }}</a> </td>
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif"> 
+                            <a href="{{ route('admin.user.show',$class->user->id) }}" class="text-black">
+                              {{ $class->user->name }} - 
+                              @if ($class->updated_at == NULL)
+                                {{ $class->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $class->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
                         @endif
                         <td> 
                           <a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
@@ -109,7 +135,20 @@
                             <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
                         </td>
-                        <td> <a href="{{ route('admin.user.show',$class->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $class->user->name }}</a> </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> 
+                          <a href="{{ route('admin.user.show',$class->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $class->user->name }} - 
+                            @if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y') }}
+                            @else
+                              {{ $class->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a> 
+                        </td>
                         <td> 
                           <a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
                           @if ($class->class_id == NULL)
@@ -206,7 +245,20 @@
                               <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                             @endif
                           </td>
-                          <td class="text-warning"> {{ $class->user->name }} </td>
+                          <td class="text-warning" data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif"> 
+                            <a href="{{ route('admin.user.show',$class->user_id) }}" class="text-warning" style="text-decoration: none;">
+                              {{ $class->user->name }}
+                              @if ($class->updated_at == NULL)
+                                {{ $class->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $class->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
                           <td> 
                             <a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
                             <a href="{{ route('admin.class.edit',$class->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $class->name }}"><i class="mdi mdi-pencil"></i></a>  
@@ -264,7 +316,20 @@
                             <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/request/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
                         </td>
-                        <td class="text-warning"> {{ $class->user->name }} </td>
+                        <td class="text-warning" data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif">
+                          <a href="{{ route('admin.user.show',$class->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $class->user->name }} -  
+                            @if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y') }}
+                            @else
+                              {{ $class->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a>
+                        </td>
                         <td><a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a></td>
                       </tr>
                     @endforeach
@@ -314,7 +379,20 @@
                             <a href="{{ route('admin.class.show',$class->id) }}"><img src="{{ asset('storage/class/request/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
                         </td>
-                        <td class="text-warning"> {{ $class->user->name }} </td>
+                        <td class="text-warning" data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> 
+                          <a href="{{ route('admin.user.show',$class->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $class->user->name }} - 
+                            @if ($class->updated_at == NULL)
+                              {{ $class->created_at->format('d-m-Y') }}
+                            @else
+                              {{ $class->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a>
+                        </td>
                         <td><a href="{{ route('admin.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a></td>
                       </tr>
                     @endforeach

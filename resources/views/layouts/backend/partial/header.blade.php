@@ -17,7 +17,11 @@
         <li class="nav-item dropdown border-left border-right">
           <a class="nav-link">
             <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+              @if (Auth::user()->image == "default.png") 
+                <img class="img-xs rounded-circle " src="{{ asset('storage/account/base/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+              @else 
+                <img class="img-xs rounded-circle " src="{{ asset('storage/account/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+              @endif
               <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::user()->name }}</p>
             </div>
           </a>

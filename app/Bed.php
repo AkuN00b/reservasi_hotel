@@ -20,4 +20,9 @@ class Bed extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
 }

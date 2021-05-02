@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SettingsController extends Controller
 {
@@ -70,5 +73,49 @@ class SettingsController extends Controller
             Toastr::error('Current password not match', 'Error');
             return redirect()->back();
         }
+    }
+
+    public function updateImage(Request $request)
+    {
+        $this->validate($request,[
+            'image' => 'mimes:jpeg,bmp,png,jpg',
+        ]);
+
+        if (Auth::user()->username == NULL){   
+            $isSlug = str_slug(Auth::user()->name);
+        } else {
+            $isSlug = str_slug(Auth::user()->username);
+        }
+
+        $image = $request->file('image');
+        $slug = $isSlug;
+        $user = User::find(Auth::id());
+        if(isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('account'))
+            {
+                Storage::disk('public')->makeDirectory(('account'));
+            }
+
+            if(Storage::disk('public')->exists('account/'.$user->image))
+            {
+                Storage::disk('public')->delete('account/'.$user->image);
+            }
+
+            $userImage = Image::make($image)->resize(1024,1024)->stream();
+            Storage::disk('public')->put('account/'.$imagename,$userImage);
+        } else {
+            $imagename = $user->image;
+        }
+
+        $user->image = $imagename;
+        $user->save();
+
+        Toastr::success('Your Image Profile Successfully Updated :))', 'Success');
+
+        return redirect()->route('admin.settings');
     }
 }

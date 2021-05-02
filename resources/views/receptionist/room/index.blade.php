@@ -30,7 +30,7 @@
                     <th> # </th>
                     <th> Name </th>
                     <th> Price </th>
-                    <th> Last Updated by </th>
+                    <th> Last Updated by - Time </th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -41,9 +41,31 @@
                       <td> {{ $room->class->name }}({{ $room->bed->name }}) </td>
                       <td> @uang($room->price) </td>
                       @if (Auth::user()->name == $room->user->name)
-                        <td class="text-success"> {{ $room->user->name }} </td>
+                        <td class="text-success" data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                          {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                        @else
+                          {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> 
+                          {{ $room->user->name }} - 
+                          @if ($room->updated_at == NULL)
+                            {{ $room->created_at->format('d-m-Y') }}
+                          @else
+                            {{ $room->updated_at->format('d-m-Y') }}
+                          @endif
+                        </td>
                       @else
-                        <td> {{ $room->user->name }} </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                          {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> 
+                          {{ $room->user->name }} - 
+                          @if ($room->updated_at == NULL)
+                            {{ $room->created_at->format('d-m-Y') }}
+                          @else
+                            {{ $room->updated_at->format('d-m-Y') }}
+                          @endif
+                        </td>
                       @endif
                       <td> 
                         <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a>   
@@ -86,6 +108,7 @@
                     <th> # </th>
                     <th> Name </th>
                     <th> Price </th>
+                    <th> Updated Time </th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -95,6 +118,12 @@
                       <td> {{ $key + 1 }} </td>
                       <td> {{ $room->class->name }}({{ $room->bed->name }}) </td>
                       <td> @uang($room->price) </td>
+                      <td data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                        {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                      @else 
+                        {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                      @endif"> {{ $room->updated_at->format('d-m-Y') }} 
+                      </td>
                       <td> 
                         <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a>   
                         <a href="{{ route('receptionist.room.edit',$room->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Request Edit {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-pencil"></i></a>  
@@ -129,6 +158,7 @@
                     <th> # </th>
                     <th> Name </th>
                     <th> Price </th>
+                    <th> Updated Time </th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -148,6 +178,12 @@
                         @endif
                       </td>
                       <td> @uang($room->price) </td>
+                      <td data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                        {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                      @else 
+                        {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                      @endif"> {{ $room->updated_at->format('d-m-Y') }} 
+                      </td>
                       <td> <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a> </td>
                     </tr>
                   @endforeach
@@ -173,6 +209,7 @@
                     <th> # </th>
                     <th> Name </th>
                     <th> Price </th>
+                    <th> Updated Time </th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -190,6 +227,12 @@
                         @endif
                       </td>
                       <td> @uang($room->price) </td>
+                      <td data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                        {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                      @else 
+                        {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                      @endif"> {{ $room->updated_at->format('d-m-Y') }} 
+                      </td>
                       <td> <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a> </td>
                     </tr>
                   @endforeach
@@ -215,6 +258,7 @@
                     <th> # </th>
                     <th> Name </th>
                     <th> Price </th>
+                    <th> Updated Time </th>
                     <th> Action </th>
                   </tr>
                 </thead>
@@ -232,6 +276,12 @@
                         @endif
                       </td>
                       <td> @uang($room->price) </td>
+                      <td data-toggle="tooltip" data-placement="bottom" title="@if ($room->updated_at == NULL)
+                        {{ $room->created_at->format('d-m-Y - H:i:s') }}
+                      @else 
+                        {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+                      @endif"> {{ $room->updated_at->format('d-m-Y') }} 
+                      </td>
                       <td> <a href="{{ route('receptionist.room.show',$room->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $room->class->name }}({{ $room->bed->name }})"><i class="mdi mdi-eye"></i></a> </td>
                     </tr>
                   @endforeach

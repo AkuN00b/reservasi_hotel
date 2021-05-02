@@ -25,6 +25,7 @@
                       <th> # </th>
                       <th> Name </th>
                       <th> Image </th>
+                      <th> Created Time </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -39,6 +40,12 @@
                           @else
                             <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
+                        </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> {{ $class->updated_at->format('d-m-Y') }} 
                         </td>
                         <td> 
                           <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a>   
@@ -75,6 +82,7 @@
                       <th> # </th>
                       <th> Name </th>
                       <th> Image </th>
+                      <th> Created Time </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -91,6 +99,12 @@
                           @else
                             <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
+                        </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> {{ $class->created_at->format('d-m-Y') }} 
                         </td>
                         <td> <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a> </td>
                       </tr>
@@ -117,6 +131,7 @@
                       <th> # </th>
                       <th> Name </th>
                       <th> Image </th>
+                      <th> Created Time </th>
                       <th> Info </th>
                     </tr>
                   </thead>
@@ -133,6 +148,12 @@
                           @else
                             <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/request/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
+                        </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> {{ $class->created_at->format('d-m-Y') }} 
                         </td>
                         <td> <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a> </td>
                       </tr>
@@ -159,6 +180,7 @@
                       <th> # </th>
                       <th> Name </th>
                       <th> Image </th>
+                      <th> Created Time </th>
                       <th> Info </th>
                     </tr>
                   </thead>
@@ -175,6 +197,12 @@
                           @else
                             <a href="{{ route('receptionist.class.show',$class->id) }}"><img src="{{ asset('storage/class/request/'.$class->image) }}" data-toggle="tooltip" data-placement="bottom" alt="Gambar {{ $class->name }}" title="Lihat Gambar {{ $class->name }}"></a>
                           @endif
+                        </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($class->updated_at == NULL)
+                            {{ $class->created_at->format('d-m-Y - H:i:s') }}
+                        @else 
+                            {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                        @endif"> {{ $class->created_at->format('d-m-Y') }} 
                         </td>
                         <td> <a href="{{ route('receptionist.class.show',$class->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $class->name }}"><i class="mdi mdi-eye"></i></a> </td>
                       </tr>

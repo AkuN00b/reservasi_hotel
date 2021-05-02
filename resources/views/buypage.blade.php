@@ -119,31 +119,6 @@
                             <hr>
 
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="mb-1">
-                                            Start Date
-                                        </div>
-                                        <div class="input-group date border">
-                                            <input placeholder="Input Start Date" type="text" autocomplete="off" class="form-control datepicker startdate single-input text-black" name="tgl_awal" id="tgl_mulai">
-                                        </div>  
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="mb-1">
-                                            End Date
-                                        </div>
-                                        <div class="input-group date border">
-                                            <input placeholder="Input End Date" type="text" autocomplete="off" class="form-control datepicker enddate single-input text-black" name="tgl_akhir" id="tgl_akhir">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
                                 <div class="col-lg-2 mt-2">Bed Name</div>
                                 <div class="col-lg-10">
                                     <div class="border">
@@ -182,8 +157,58 @@
                                 <div class="col-lg-2 mt-2">Room Price</div>
                                 <div class="col-lg-10">
                                     <div class="border">
-                                        <input type="text" name="first_name" placeholder="First Name" required disabled value="@uang($rooms->price)" class="single-input text-black">
+                                        <input type="text" name="first_name" placeholder="First Name" required disabled value="{{ $rooms->price }}" class="single-input text-black" id="price">
                                         <input type="text" name="room_id" placeholder="First Name" required hidden value="{{ $rooms->id }}" class="single-input text-black">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Start Date
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Input Start Date" type="text" autocomplete="off" class="form-control datepicker startdate single-input text-black" name="tgl_awal" id="tgl_mulai">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            End Date
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Input End Date" type="text" autocomplete="off" class="form-control datepicker enddate single-input text-black" name="tgl_akhir" id="tgl_akhir">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Duration
+                                        </div>
+                                        <div class="input-group border">
+                                            <input placeholder="Duration" type="number" readonly required autocomplete="off" class="form-control single-input text-black" name="durasi" id="durasi">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Total Price
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Grand Price" type="number" readonly required autocomplete="off" class="form-control single-input text-black" name="total" id="total">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -302,31 +327,6 @@
                             <hr>
 
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="mb-1">
-                                            Start Date
-                                        </div>
-                                        <div class="input-group date border">
-                                            <input placeholder="Input Start Date" type="text" autocomplete="off" class="form-control datepicker startdate single-input text-black" name="tgl_awal" id="tgl_mulai">
-                                        </div>  
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="mb-1">
-                                            End Date
-                                        </div>
-                                        <div class="input-group date border">
-                                            <input placeholder="Input End Date" type="text" autocomplete="off" class="form-control datepicker enddate single-input text-black" name="tgl_akhir" id="tgl_akhir">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-
-                            <div class="row">
                                 <div class="col-lg-2" style="margin-top: 9px;">
                                     Room Number
                                 </div>
@@ -384,8 +384,58 @@
                                 <div class="col-lg-2 mt-2">Room Price</div>
                                 <div class="col-lg-10">
                                     <div class="border">
-                                        <input type="text" name="first_name" placeholder="First Name" required disabled value="@uang($rooms->price)" class="single-input text-black">
+                                        <input type="text" name="first_name" placeholder="First Name" required readonly value="{{ $rooms->price }}" class="single-input text-black" id="price">
                                         <input type="text" name="room_id" placeholder="First Name" required hidden value="{{ $rooms->id }}" class="single-input text-black">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Start Date
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Input Start Date" type="text" autocomplete="off" class="form-control datepicker startdate single-input text-black" name="tgl_awal" id="tgl_mulai">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            End Date
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Input End Date" type="text" autocomplete="off" class="form-control datepicker enddate single-input text-black" name="tgl_akhir" id="tgl_akhir">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Duration
+                                        </div>
+                                        <div class="input-group border">
+                                            <input placeholder="Duration" type="number" readonly required autocomplete="off" class="form-control single-input text-black" name="durasi" id="durasi">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="mb-1">
+                                            Total Price
+                                        </div>
+                                        <div class="input-group date border">
+                                            <input placeholder="Grand Price" type="number" readonly required autocomplete="off" class="form-control single-input text-black" name="total" id="total">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -99,6 +99,7 @@ class BedController extends Controller
         $bed->name = $request->name;
         $bed->slug = str_slug($request->name);
         $bed->person = $request->person;
+        $bed->user_id = Auth::user()->id;
         $bed->save();
 
         Toastr::success('Bed Category Successfully Updated :))', 'Success');

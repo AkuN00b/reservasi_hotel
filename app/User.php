@@ -14,8 +14,23 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'identitas', 'no_identitas', 'alamat', 'jenis_kelamin', 'username', 'email', 'password', 'role_id', 'image', 'about'
+    protected $table = "users";
+    protected $filled = [
+        'name', 
+        'identitas', 
+        'no_identitas', 
+        'alamat', 
+        'jenis_kelamin', 
+        'username', 
+        'email', 
+        'password', 
+        'role_id', 
+        'image', 
+        'about',
+        'status',
+        'user_id',
+        'users_id',
+        'req_status',
     ];
 
     /**
@@ -50,5 +65,20 @@ class User extends Authenticatable
     public function room()
     {
         return $this->hasMany('App\Room');
+    }
+
+    public function roomnumber()
+    {
+        return $this->hasMany('App\RoomNumber');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User');
     }
 }

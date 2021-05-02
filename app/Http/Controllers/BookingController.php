@@ -13,6 +13,12 @@ class BookingController extends Controller
 {
     public function add(Request $request)
     {   
+        if ($request->durasi == 0 || $request->total == 0){
+            Toastr::error('Sorry The Date Input is Wrong :)), Enter Date Again !!', 'Error');
+        
+            return redirect()->back();
+        }
+
         $this->validate($request, [
             'user_id' => 'required',
             'role_id' => 'required',
@@ -24,6 +30,8 @@ class BookingController extends Controller
             'jenis_kelamin' => 'required',
             'tgl_awal' => 'required',
             'tgl_akhir' => 'required',
+            'durasi' => 'required',
+            'total' => 'required',
             'bed_id' => 'required',
             'class_id' => 'required',
             'room_id' => 'required',
@@ -32,7 +40,8 @@ class BookingController extends Controller
         ]);        
 
         $roomnumber = RoomNumber::where('room_id', $request->room_id)
-                                ->where('status', 1)->get();
+                                ->where('status', 1)
+                                ->where('req_status', 1)->get();
         
         if ($roomnumber->count() < 1){
             Toastr::info('Sorry Room is Not Available :)), Choose Other Room !!', 'Info');
@@ -50,6 +59,8 @@ class BookingController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'tgl_awal' => $request->tgl_awal,
                 'tgl_akhir' => $request->tgl_akhir,
+                'durasi' => $request->durasi,
+                'total' => $request->total,
                 'bed_id' => $request->bed_id,
                 'class_id' => $request->class_id,
                 'room_id' => $request->room_id,
@@ -64,7 +75,13 @@ class BookingController extends Controller
     }
 
     public function addadmin(Request $request)
-    {
+    {   
+        if ($request->durasi == 0 || $request->total == 0){
+            Toastr::error('Sorry The Date Input is Wrong :)), Enter Date Again !!', 'Error');
+        
+            return redirect()->back();
+        }
+
         $this->validate($request, [
             'user_id' => 'required',
             'role_id' => 'required',
@@ -76,6 +93,8 @@ class BookingController extends Controller
             'jenis_kelamin' => 'required',
             'tgl_awal' => 'required',
             'tgl_akhir' => 'required',
+            'durasi' => 'required',
+            'total' => 'required',
             'bed_id' => 'required',
             'class_id' => 'required',
             'room_id' => 'required',
@@ -84,25 +103,36 @@ class BookingController extends Controller
             'transaction_id' => 'required',
         ]);
 
-        Booking::create(
-        [
-            'user_id' => $request->user_id,
-            'role_id' => $request->role_id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'identitas' => $request->identitas,
-            'no_identitas' => $request->no_identitas,
-            'alamat' => $request->alamat,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tgl_awal' => $request->tgl_awal,
-            'tgl_akhir' => $request->tgl_akhir,
-            'bed_id' => $request->bed_id,
-            'class_id' => $request->class_id,
-            'room_id' => $request->room_id,
-            'room_number_id' => $request->room_number_id,
-            'status' => $request->status,
-            'transaction_id' => $request->transaction_id,
-        ]);
+        $roomnumber = RoomNumber::where('room_id', $request->room_id)
+                                ->where('status', 1)
+                                ->where('req_status', 1)->get();
+        
+        if ($roomnumber->count() < 1){
+            Toastr::info('Sorry Room is Not Available :)), Choose Other Room !!', 'Info');
+        
+            return redirect()->route('primary');
+        } else {
+            Booking::create([
+                'user_id' => $request->user_id,
+                'role_id' => $request->role_id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'identitas' => $request->identitas,
+                'no_identitas' => $request->no_identitas,
+                'alamat' => $request->alamat,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tgl_awal' => $request->tgl_awal,
+                'tgl_akhir' => $request->tgl_akhir,
+                'durasi' => $request->durasi,
+                'total' => $request->total,
+                'bed_id' => $request->bed_id,
+                'class_id' => $request->class_id,
+                'room_id' => $request->room_id,
+                'room_number_id' => $request->room_number_id,
+                'status' => $request->status,
+                'transaction_id' => $request->transaction_id,
+            ]);
+        }
 
         $roomNumber = RoomNumber::find($request->room_number_id);
 

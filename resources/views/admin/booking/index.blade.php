@@ -33,8 +33,8 @@
                   <thead>
                     <tr>
                       <th> # </th>
-                      <th> User Name </th>
                       <th> Order Name </th>
+                      <th> Last Updated by - Time </th>
                       <th> Bed Category </th>
                       <th> Class Category </th> 
                       <th> Action </th> 
@@ -44,7 +44,7 @@
                     @foreach ($bookings as $key=>$booking)
                       <tr class="text-black">
                         <td> {{ $key + 1 }} </td>
-                        <td> <a href="{{ route('admin.user.show',$booking->user->id) }}" class="text-black" >{{ $booking->user->name }}</a>
+                        <td> {{ $booking->name }} 
                           @if ($booking->status == 0)
                               <sup><span class="badge badge-pill badge-warning" style="font-size: 10px;">Waiting for Confirmation</span></sup> 
                           @elseif ($booking->status == 1)
@@ -59,7 +59,37 @@
                               <sup><span class="badge badge-pill badge-warning" style="font-size: 10px;">Wait for Transaction</span></sup> 
                           @endif
                         </td>
-                        <td> {{ $booking->name }} </td>
+                        @if (Auth::user()->name == $booking->user->name)
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($booking->updated_at == NULL)
+                            {{ $booking->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $booking->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                            <a href="{{ route('admin.user.show',$booking->user->id) }}" class="text-success">
+                              {{ $booking->user->name }} - 
+                              @if ($booking->updated_at == NULL)
+                                {{ $booking->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $booking->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a> 
+                          </td>
+                        @else
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($booking->updated_at == NULL)
+                            {{ $booking->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $booking->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif"> 
+                            <a href="{{ route('admin.user.show',$booking->user->id) }}" class="text-black">
+                              {{ $booking->user->name }} - 
+                              @if ($booking->updated_at == NULL)
+                                {{ $booking->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $booking->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
+                        @endif
                         <td> {{ $booking->bed->name }} </td>
                         <td> {{ $booking->class->name }} </td>
                         <td>

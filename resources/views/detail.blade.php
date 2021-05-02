@@ -24,15 +24,15 @@
     <div class="container">
        <div class="row">
           <div class="col-lg-12 posts-list">
-             <div class="single-post">
-                <div class="feature-img">
-                   <img class="img-fluid" src="{{ asset('assets/frontend/img/blog/single_blog_1.png') }}" alt="">
-                </div>
+             <div class="single-post">                
                 <div class="blog_details">
                    <h2>{{ $class->name }} Detail</h2>
+                   <div class="feature-img">
+                     <img class="img-fluid" src="{{ asset('storage/class/'.$class->image) }}" width="50%">
+                   </div>
                    <p class="excert">
                       {!! $class->desc !!}
-                   </p>
+                   </p><br>
                    @if ($rooms->count() > 0)
                    <div class="mt-3 mb-3">
                      {{ $class->name }} Room Price <br><br>
@@ -64,19 +64,21 @@
                                        Buy
                                     </a>
                                   @else
-                                  @if ($room->roomNumber->count() < 1)
-                                    <a href="javascript:void(0)" 
-                                       class="genric-btn primary-border btn-block" style="font-size: 20px"
-                                       onclick="toastr.info('Sorry. Room is Not Available. :))','Info',
-                                       {
-                                       closeButton: true, 
-                                       progressBar: true,
-                                       })">
-                                       Buy
-                                    </a>
-                                  @else
-                                    <a href="{{ route('class.buypage',$room->id.'/'.$room->class_id.'/'.$room->bed_id.'/'.$room->class->slug.'/'.$room->bed->slug) }}" class="genric-btn primary-border btn-block" style="font-size: 20px">Buy</a>
-                                  @endif
+
+                                    @if ($room->roomNumber->count() < 1)
+                                       <a href="javascript:void(0)" 
+                                          class="genric-btn primary-border btn-block" style="font-size: 20px"
+                                          onclick="toastr.info('Sorry. Room is Not Available. :))','Info',
+                                          {
+                                          closeButton: true, 
+                                          progressBar: true,
+                                          })">
+                                          Buy
+                                       </a>
+                                    @else
+                                       <a href="{{ route('class.buypage',$room->id.'/'.$room->class_id.'/'.$room->bed_id.'/'.$room->class->slug.'/'.$room->bed->slug) }}" class="genric-btn primary-border btn-block" style="font-size: 20px">Buy</a>
+                                    @endif
+                                    
                                   @endguest
                                </div>
                             </div>

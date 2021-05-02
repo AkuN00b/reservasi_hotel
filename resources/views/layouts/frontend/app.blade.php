@@ -92,6 +92,27 @@
           $("#tgl_akhir").val($("#tgl_mulai").val());
         }
   });
+  $("#tgl_akhir").change(function(){
+    var d1 = $('#tgl_mulai').val();
+    var d2 = $('#tgl_akhir').val();
+    var price = $('#price').val();
+
+    var date1 = new Date(d1);
+    var date2 = new Date(d2);
+
+    var date1_ms = date1.getTime();
+    var date2_ms = date2.getTime();
+
+    var diff = date2_ms-date1_ms;
+
+    // get days
+    var days = diff/1000/60/60/24;
+
+    var total = days * price;
+
+    $('#durasi').val(days);  
+    $('#total').val(total);  
+  });
  });
 </script>
 <script type="text/javascript">
@@ -104,7 +125,28 @@
          endDate: '+2d',
      });
     });
-   </script>
+    $("#tgl_mulai").change(function(){
+    var d1 = $('#tgl_mulai').val();
+    var d2 = $('#tgl_akhir').val();
+    var price = $('#price').val();
+
+    var date1 = new Date(d1);
+    var date2 = new Date(d2);
+
+    var date1_ms = date1.getTime();
+    var date2_ms = date2.getTime();
+
+    var diff = date2_ms-date1_ms;
+
+    // get days
+    var days = diff/1000/60/60/24;
+
+    var total = days * price;
+
+    $('#durasi').val(days);  
+    $('#total').val(total);
+  });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
@@ -117,7 +159,16 @@
                 });
             @endforeach
         @endif
-    </script>
-    @stack('js')
+</script>
+{{-- <script type="text/javascript">
+    $("#durasi").change(function() {
+        var durasi = parseInt(document.getElementById('durasi'));
+        var price = parseInt(document.getElementById('price'));
+        var total = durasi * price;
+
+        document.getElementById('total').value = total;
+    });
+</script> --}}
+@stack('js')
 </body>
 </html>

@@ -58,8 +58,6 @@
                 @endforeach
               </select>
             </div>
-            Profile Image: <br>
-            <img src="{{ asset('assets/backend/images/faces/'.$user->image) }}" alt="Gambar {{ $user->name }}"><br><br>
             <div class="form-group">
               <label for="about">About</label>
               <input type="text" class="form-control" id="about" name="about" value="{{ $user->about }}" placeholder="About">
@@ -77,6 +75,31 @@
             </div> --}}
             <button type="submit" class="btn btn-primary mr-2">Submit</button>
             <button type="reset" class="btn btn-dark">Cancel</button>
+        </form>
+
+        <h2 class="mt-5 mb-2">Update User Image</h2>
+        <hr class="mb-3 garis">
+        <form action="{{ route('admin.user.image-update', $user->id) }}" class="forms-sample" method="POST" enctype="multipart/form-data">
+          @csrf
+          @method('PUT')
+            <div class="form-group">
+              <label for="image">Image File</label>
+              <input type="file" name="image" id="image" class="form-control">
+            </div>
+            Preview Image: <br>
+            @if ($user->image == 'default.png')
+              <img src="{{ asset('storage/account/base/'.$user->image) }}" alt="Gambar {{ $user->name }}" style="padding: 0;
+              display: block;
+              max-height: 30%;
+              max-width: 30%;"><br><br>
+            @else 
+              <img src="{{ asset('storage/account/'.$user->image) }}" alt="Gambar {{ $user->name }}" style="padding: 0;
+              display: block;
+              max-height: 30%;
+              max-width: 30%;"><br><br>
+            @endif
+          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+          <button type="reset" class="btn btn-dark">Cancel</button>
         </form>
     </div>
 </div>

@@ -12,7 +12,7 @@
     <div class="container p-3">
         <div class="card">
             <div class="card-header">
-                Invoice: <strong>{{ $bookings->id }}</strong> 
+                Invoice: <strong>{{ $bookings->id }}/{{ $bookings->created_at->format('d') }}/{{ $bookings->created_at->format('m') }}/{{ $bookings->created_at->format('Y') }}</strong> 
                 <span class="float-right">
                     Status:
                     @if ($bookings->status == 0)
@@ -69,6 +69,7 @@
                         Gender: {{ $bookings->jenis_kelamin }} <br>
                         Start Date: {{ $bookings->tgl_awal }} <br>
                         End Date: {{ $bookings->tgl_akhir }} <br>
+                        Duration: {{ $bookings->durasi }} day(s) <br>
                         @if ($bookings->status == 1)
                             Room Number: {{ $bookings->room_number->name }} <br><br>
                         @else
@@ -114,7 +115,9 @@
                             <tr>
                                 <th>Bed Category</th>
                                 <th>Class Category</th>
-                                <th class="right">Total</th>
+                                <th>Day(s)</th>
+                                <th class="right">Price</th>
+                                <th class="right">Grand Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -122,7 +125,9 @@
                             <tr>
                                 <td class="left">{{ $bookings->bed->name }}</td>
                                 <td class="left">{{ $bookings->class->name }}</td>
+                                <td class="right">{{ $bookings->durasi }}</td>
                                 <td class="right">@uang($bookings->room->price)</td>
+                                <td class="right">@uang($bookings->total)</td>
                                 <td>
                                     @if ($bookings->status == 0)   
                                         Waiting for Confirmation   

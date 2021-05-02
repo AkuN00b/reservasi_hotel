@@ -50,7 +50,28 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::put('request/room/cancel/{id}', 'RoomRequestController@cancel')->name('room.requestcancel');
 
     Route::resource('room-number', 'RoomNumberController');
+    
+    Route::put('request/room-number/non-active/{id}', 'RoomNumberRequestController@toNonActive')->name('room-number.nonactive');
+    Route::put('request/room-number/active/{id}', 'RoomNumberRequestController@toActive')->name('room-number.active');
+
+    Route::get('request/room-number', 'RoomNumberRequestController@index')->name('room-number.request');
+    Route::put('request/room-number/create/{id}', 'RoomNumberRequestController@create')->name('room-number.requestcreate');
+    Route::put('request/room-number/edit/{id}', 'RoomNumberRequestController@edit')->name('room-number.requestedit');
+    Route::put('request/room-number/delete/{id}', 'RoomNumberRequestController@delete')->name('room-number.requestdelete');
+    Route::put('request/room-number/cancel/{id}', 'RoomNumberRequestController@cancel')->name('room-number.requestcancel');
+
     Route::resource('user', 'UserController');
+    Route::put('update/user-image/{id}', 'UserController@updateImage')->name('user.image-update');
+
+    Route::put('request/user/non-active/{id}', 'UserRequestController@toNonActive')->name('user.nonactive');
+    Route::put('request/user/active/{id}', 'UserRequestController@toActive')->name('user.active');
+
+    Route::get('request/user', 'UserRequestController@index')->name('user.request');
+    // Route::put('request/user/create/{id}', 'UserRequestController@create')->name('user.requestcreate');
+    // Route::put('request/user/edit/{id}', 'UserRequestController@edit')->name('user.requestedit');
+    Route::put('request/user/delete/{id}', 'UserRequestController@delete')->name('user.requestdelete');
+    Route::put('request/user/cancel/{id}', 'UserRequestController@cancel')->name('user.requestcancel');
+
     Route::resource('booking', 'BookingController');
 
     Route::get('customer/booking', 'BookProcessController@index')->name('booking.customer');
@@ -66,6 +87,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
     Route::get('settings', 'SettingsController@index')->name('settings');
     Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
     Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
+    Route::put('image-update', 'SettingsController@updateImage')->name('image.update');
 });
 
 Route::group(['as' => 'receptionist.', 'prefix' => 'receptionist', 'namespace' => 'Receptionist', 'middleware' => ['auth', 'receptionist']], function () {
@@ -90,6 +112,17 @@ Route::group(['as' => 'receptionist.', 'prefix' => 'receptionist', 'namespace' =
     Route::get('request/room', 'RoomRequestController@request')->name('room.request');
     Route::post('request-delete/room/{id}', 'RoomRequestController@reqdelete')->name('room.requestdelete');
 
+    Route::resource('room-number', 'RoomNumberController');
+    Route::put('room-number/non-active/{id}', 'RoomNumberRequestController@toNonActive')->name('room-number.nonactive');
+    Route::put('room-number/active/{id}', 'RoomNumberRequestController@toActive')->name('room-number.active');
+    Route::get('request/room-number', 'RoomNumberRequestController@request')->name('room-number.request');
+
+    Route::resource('user', 'UserController');
+    Route::put('update/user-image/{id}', 'UserController@updateImage')->name('user.image-update');
+    Route::put('request/user/non-active/{id}', 'UserRequestController@toNonActive')->name('user.nonactive');
+    Route::put('request/user/active/{id}', 'UserRequestController@toActive')->name('user.active');
+    Route::get('request/user', 'UserRequestController@request')->name('user.request');
+
     Route::resource('booking', 'BookingController');
 
     Route::get('customer/booking', 'BookProcessController@index')->name('booking.customer');
@@ -103,6 +136,7 @@ Route::group(['as' => 'receptionist.', 'prefix' => 'receptionist', 'namespace' =
     Route::get('settings', 'SettingsController@index')->name('settings');
     Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
     Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
+    Route::put('image-update', 'SettingsController@updateImage')->name('image.update');
 });
 
 Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Customer', 'middleware' => ['auth', 'customer']], function () {
@@ -112,4 +146,5 @@ Route::group(['as' => 'customer.', 'prefix' => 'customer', 'namespace' => 'Custo
     Route::get('settings', 'SettingsController@index')->name('settings');
     Route::put('profile-update', 'SettingsController@updateProfile')->name('profile.update');
     Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
+    Route::put('image-update', 'SettingsController@updateImage')->name('image.update');
 });

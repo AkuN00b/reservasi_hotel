@@ -25,10 +25,10 @@
                         <thead>
                             <tr>
                             <th> # </th>
-                            <th> User Name </th>
-                            <th> Order Name </th>
-                            <th> Bed Category </th>
-                            <th> Class Category </th> 
+                            <th> Room </th>
+                            <th> Room Price </th>
+                            <th> Date </th>
+                            <th> Grand Price </th>
                             <th> Action </th> 
                             </tr>
                         </thead>
@@ -36,7 +36,11 @@
                             @foreach ($bookings as $key=>$booking)
                             <tr class="text-black">
                                 <td> {{ $key + 1 }} </td>
-                                <td> {{ $booking->user->name }} 
+                                @if ($booking->room_number_id == !NULL)
+                                    <td> {{ $booking->room_number->name }} : {{ $booking->class->name }} ({{ $booking->bed->name }})
+                                @else
+                                    <td> {{ $booking->class->name }} ({{ $booking->bed->name }})
+                                @endif
                                 @if ($booking->status == 0)
                                     <sup><span class="badge badge-pill badge-warning" style="font-size: 10px;">Wait for Confirmation</span></sup> 
                                 @elseif ($booking->status == 1)
@@ -51,9 +55,15 @@
                                     <sup><span class="badge badge-pill badge-danger" style="font-size: 10px;" data-toggle="tooltip" data-placement="bottom" title="Ref. Booking: {{ $booking->transaction_id }}">Buy Your Booking</span></sup> 
                                 @endif
                                 </td>
-                                <td> {{ $booking->name }} </td>
-                                <td> {{ $booking->bed->name }} </td>
-                                <td> {{ $booking->class->name }} </td>
+                                <td> @uang($booking->room->price) </td>
+                                <td> {{ $booking->tgl_awal }} - {{ $booking->tgl_akhir }} ({{ $booking->durasi }}
+                                     @if ($booking->durasi > 1)
+                                        days)
+                                     @else
+                                        day)
+                                     @endif
+                                </td>
+                                <td> @uang($booking->total) </td>
                                 <td>
                                 <a href="{{ route('customer.booking.show',$booking->id) }}" class="btn btn-info mr-2 btn-block pt-1 pb-1 pl-3" data-toggle="tooltip" data-placement="bottom" title="Your Booking Detail"><i class="mdi mdi-eye"></i></a>
                                 </td>

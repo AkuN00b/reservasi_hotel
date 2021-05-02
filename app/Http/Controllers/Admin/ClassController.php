@@ -146,6 +146,7 @@ class ClassController extends Controller
         $class->slug = $slug;
         $class->desc = $request->desc;
         $class->image = $imagename;
+        $class->user_id = Auth::user()->id;
         $class->save();
 
         Toastr::success('Class Category Successfully Updated :))', 'Success');

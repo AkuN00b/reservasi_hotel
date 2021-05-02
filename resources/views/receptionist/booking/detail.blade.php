@@ -42,7 +42,11 @@
                             Address: {{ $bookings->alamat }} <br>
                             Gender: {{ $bookings->jenis_kelamin }} <br>
                             Start Date: {{ $bookings->tgl_awal }} <br>
-                            End Date: {{ $bookings->tgl_akhir }} <br><br>
+                            End Date: {{ $bookings->tgl_akhir }} <br>
+                            Total Date: {{ $bookings->durasi }} day(s) <br><br>
+
+                            Created Time: {{ $bookings->created_at->format('d-m-Y - H:i:s') }} <br>
+                            Updated Time: {{ $bookings->updated_at->format('d-m-Y - H:i:s') }} <br><br>
                         @else
                             <div class="row">
                                 <div class="col-lg-6">
@@ -54,7 +58,8 @@
                                     Address: {{ $bookings->alamat }} <br>
                                     Gender: {{ $bookings->jenis_kelamin }} <br>
                                     Start Date: {{ $bookings->tgl_awal }} <br>
-                                    End Date: {{ $bookings->tgl_akhir }} <br><br>
+                                    End Date: {{ $bookings->tgl_akhir }} <br>
+                                    Total Date: {{ $bookings->durasi }} day(s) <br><br>
                                 </div>
                                 <div class="col-lg-6">
                                     @if ($bookings->user->role->id == 1) 
@@ -68,6 +73,9 @@
                                     Identity Number: {{ $bookings->user->no_identitas }} <br>
                                     Address: {{ $bookings->user->alamat }} <br>
                                     Gender: {{ $bookings->user->jenis_kelamin }} <br><br>
+
+                                    Created Time: {{ $bookings->created_at->format('d-m-Y - H:i:s') }} <br>
+                                    Updated Time: {{ $bookings->updated_at->format('d-m-Y - H:i:s') }} <br><br>
                                 </div>
                             </div>
                         @endif
@@ -156,8 +164,10 @@
                                     <th>Room Number</th>
                                 @else
 
-                                @endif
-                                <th class="right">Total</th>
+                                @endif  
+                                <th>Day(s)</th>
+                                <th class="right">Price</th>
+                                <th>Grand Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -170,7 +180,9 @@
                                 @else
 
                                 @endif
+                                <td class="right">{{ $bookings->durasi }}</td>
                                 <td class="right">@uang($bookings->room->price)</td>
+                                <td class="right">@uang($bookings->total)</td>
                                 <td>
                                     @if ($bookings->status == 0)
                                         @if ($bookings->room_number_id == NULL)

@@ -73,6 +73,33 @@
             @else
                 Last Updated By: {{ $class->user_image->name }} <br>
             @endif
+
+            Created Time: {{ $class->created_at->format('d-m-Y - H:i:s') }} <br>
+            @if ($class->status == 1)
+                Updated Time: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($class->slug == 99)
+                @if ($class->status == 2) 
+                    Accepted for Edit Image Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @elseif ($class->status == 9)
+                    Rejected for Edit Image Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @endif
+            @elseif ($class->status == 2)
+                @if ($class->slug == 'Create Req.')
+                    Accepted for Create Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @elseif ($class->slug == 'Edit Req.')
+                    Accepted for Edit Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @elseif ($class->slug == 'Delete Req.')
+                    Accepted for Delete Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @endif  
+            @elseif ($class->status == 9)
+                @if ($class->slug == 'Create Req.')
+                    Rejected for Create Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @elseif ($class->slug == 'Edit Req.')
+                    Rejected for Edit Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @elseif ($class->slug == 'Delete Req.')
+                    Rejected for Delete Req: {{ $class->updated_at->format('d-m-Y - H:i:s') }}
+                @endif
+            @endif <br>
         </div>
     </div>
 </div>

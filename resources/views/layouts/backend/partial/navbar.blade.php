@@ -9,7 +9,11 @@
           <a href="{{ route('admin.settings') }}" style="text-decoration: none; color: white;">
             <div class="profile-pic">
               <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @if (Auth::user()->image == 'default.png') 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/base/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @else 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @endif
                 <span class="count bg-success"></span>
               </div>
               <div class="profile-name">
@@ -24,7 +28,11 @@
           <a href="{{ route('receptionist.settings') }}" style="text-decoration: none; color: white;">
             <div class="profile-pic">
               <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @if (Auth::user()->image == 'default.png') 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/base/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @else 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @endif
                 <span class="count bg-success"></span>
               </div>
               <div class="profile-name">
@@ -39,7 +47,11 @@
           <a href="{{ route('customer.settings') }}" style="text-decoration: none; color: white;">
             <div class="profile-pic">
               <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{{ asset('assets/backend/images/faces/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @if (Auth::user()->image == 'default.png') 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/base/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @else 
+                  <img class="img-xs rounded-circle " src="{{ asset('storage/account/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @endif
                 <span class="count bg-success"></span>
               </div>
               <div class="profile-name">
@@ -172,29 +184,35 @@
           </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.room-number.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#roomnumber" aria-expanded="false" aria-controls="roomnumber">
             <span class="menu-icon">
               <i class="mdi mdi-key-plus"></i>
             </span>
-            <span class="menu-title">Room Number List</span>
+            <span class="menu-title">Room Number</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="roomnumber">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.room-number.index') }}">Room Number List</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.room-number.request') }}">Room Number Request</a> </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.user.index') }}">
+          <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
             <span class="menu-icon">
               <i class="mdi mdi-account-multiple-outline"></i>
             </span>
-            <span class="menu-title">User Data</span>
+            <span class="menu-title">User</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="user">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.user.index') }}">User List</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.user.request') }}">User Request</a> </li>
+            </ul>
+          </div>
         </li>
-        {{-- <li class="nav-item menu-items">
-          <a class="nav-link" href="{{ route('admin.booking.index') }}">
-            <span class="menu-icon">
-              <i class="mdi mdi-account-multiple-plus"></i>
-            </span>
-            <span class="menu-title">Booking</span>
-          </a>
-        </li> --}}
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#booking" aria-expanded="false" aria-controls="booking">
             <span class="menu-icon">
@@ -300,6 +318,36 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room.index') }}">Room Category</a> </li>
               <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room.request') }}">My Request</a> </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#roomnumber" aria-expanded="false" aria-controls="roomnumber">
+            <span class="menu-icon">
+              <i class="mdi mdi-key-plus"></i>
+            </span>
+            <span class="menu-title">Room Number</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="roomnumber">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room-number.index') }}">Room Number List</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.room-number.request') }}">My Request</a> </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
+            <span class="menu-icon">
+              <i class="mdi mdi-account-multiple-outline"></i>
+            </span>
+            <span class="menu-title">User</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="user">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.user.index') }}">User List</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('receptionist.user.request') }}">My Request</a> </li>
             </ul>
           </div>
         </li>

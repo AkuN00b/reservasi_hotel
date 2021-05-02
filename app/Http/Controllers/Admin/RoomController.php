@@ -107,6 +107,7 @@ class RoomController extends Controller
         $room->class_id = $request->class_id;
         $room->bed_id = $request->bed_id;
         $room->price = $request->price;
+        $room->user_id = Auth::user()->id;
         $room->save();
 
         Toastr::success('Room Category Successfully Updated :))', 'Success');

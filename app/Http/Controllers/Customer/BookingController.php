@@ -20,11 +20,16 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $bookings = Booking::where('user_id', Auth::user()->id)
+    {   
+        if (Auth::user()->status == 1 && Auth::user()->req_status == 1)
+        {
+            $bookings = Booking::where('user_id', Auth::user()->id)
                            ->orderBy('id', 'DESC')->get();
 
-        return view('customer.booking.index', compact('bookings'));
+            return view('customer.booking.index', compact('bookings'));
+        } else {
+            return view('errors.401');
+        }
     }
 
     /**
@@ -55,11 +60,14 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $bookings = Booking::find($id);
-        $status5 = DynamicData::where('section', 'status-5')->get();
-
-        return view('customer.booking.detail', compact('bookings', 'status5'));
+    {   
+        if (Auth::user()->status == 1 && Auth::user()->req_status == 1)
+        {
+            $bookings = Booking::find($id);
+            return view('customer.booking.detail', compact('bookings'));
+        } else {
+            return view('errors.401');
+        }
     }
 
     /**
@@ -70,9 +78,13 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        $bookings = Booking::find($id);
-
-        return view('customer.booking.edit', compact('bookings'));
+        if (Auth::user()->status == 1 && Auth::user()->req_status == 1)
+        {
+            $bookings = Booking::find($id);
+            return view('customer.booking.edit', compact('bookings'));
+        } else {
+            return view('errors.401');
+        }
     }
 
     /**
@@ -83,34 +95,39 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $this->validate($request,[
-            'image' => 'mimes:jpeg,bmp,png,jpg',
-        ]);
-
-        $image = $request->file('image');
-        if (isset($image))
+    {   
+        if (Auth::user()->status == 1 && Auth::user()->req_status == 1)
         {
-            $currentDate = Carbon::now()->toDateString();
-            $imagename = $currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
-            if(!Storage::disk('public')->exists('proof-transaction'))
+            $this->validate($request,[
+                'image' => 'mimes:jpeg,bmp,png,jpg',
+            ]);
+    
+            $image = $request->file('image');
+            if (isset($image))
             {
-                Storage::disk('public')->makeDirectory('proof-transaction');
+                $currentDate = Carbon::now()->toDateString();
+                $imagename = $currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+    
+                if(!Storage::disk('public')->exists('proof-transaction'))
+                {
+                    Storage::disk('public')->makeDirectory('proof-transaction');
+                }
+                $bookings = Image::make($image)->stream();
+                Storage::disk('public')->put('proof-transaction/'.$imagename,$bookings);
+            } else {
+                $imagename = "default.png";
             }
-            $bookings = Image::make($image)->stream();
-            Storage::disk('public')->put('proof-transaction/'.$imagename,$bookings);
+    
+            $bookings = Booking::find($id);
+            $bookings->image = $imagename;
+            $bookings->save();
+    
+            Toastr::success('Proof Transaction Successfully Uploaded :))', 'Success');
+    
+            return redirect()->route('customer.booking.show', $id);
         } else {
-            $imagename = "default.png";
+            return view('errors.401');
         }
-
-        $bookings = Booking::find($id);
-        $bookings->image = $imagename;
-        $bookings->save();
-
-        Toastr::success('Proof Transaction Successfully Uploaded :))', 'Success');
-
-        return redirect()->route('customer.booking.show', $id);
     }
 
     /**

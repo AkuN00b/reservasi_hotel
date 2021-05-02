@@ -46,6 +46,26 @@
         Name: {{ $bed->name }} <br>
         Amount of Person: {{ $bed->person }} <br>
         Last Updated By: {{ $bed->user->name }} <br>
+        Created Time: {{ $bed->created_at->format('d-m-Y - H:i:s') }} <br>
+        @if ($bed->status == 1)
+            Updated Time: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+        @elseif ($bed->status == 2)
+            @if ($bed->slug == 'Create Req.')
+                Accepted for Create Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($bed->slug == 'Edit Req.')
+                Accepted for Edit Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($bed->slug == 'Delete Req.')
+                Accepted for Delete Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @endif  
+        @elseif ($bed->status == 9)
+            @if ($bed->slug == 'Create Req.')
+                Rejected for Create Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($bed->slug == 'Edit Req.')
+                Rejected for Edit Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($bed->slug == 'Delete Req.')
+                Rejected for Delete Req: {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+            @endif
+        @endif <br>
     </div>
     </div>
 </div>

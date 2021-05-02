@@ -46,6 +46,26 @@
         Name: {{ $room->class->name }}({{ $room->bed->name }}) <br>
         Price: @uang($room->price) <br>
         Last Updated By: {{ $room->user->name }} <br>
+        Created Time: {{ $room->created_at->format('d-m-Y - H:i:s') }} <br>
+        @if ($room->status == 1)
+            Updated Time: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+        @elseif ($room->status == 2)
+            @if ($room->slug == 'Create Req.')
+                Accepted for Create Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($room->slug == 'Edit Req.')
+                Accepted for Edit Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($room->slug == 'Delete Req.')
+                Accepted for Delete Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @endif  
+        @elseif ($room->status == 9)
+            @if ($room->slug == 'Create Req.')
+                Rejected for Create Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($room->slug == 'Edit Req.')
+                Rejected for Edit Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @elseif ($room->slug == 'Delete Req.')
+                Rejected for Delete Req: {{ $room->updated_at->format('d-m-Y - H:i:s') }}
+            @endif
+        @endif <br>
     </div>
     </div>
 </div>

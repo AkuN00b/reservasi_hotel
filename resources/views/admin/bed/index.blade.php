@@ -41,9 +41,35 @@
                         <td> {{ $bed->name }} </td>
                         <td> {{ $bed->person }} </td>
                         @if (Auth::user()->name == $bed->user->name)
-                          <td> <a href="{{ route('admin.user.show',$bed->user->id) }}" class="text-success">{{ $bed->user->name }}</a> </td>
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                            <a href="{{ route('admin.user.show',$bed->user->id) }}" class="text-success">
+                              {{ $bed->user->name }} - 
+                              @if ($bed->updated_at == NULL)
+                                {{ $bed->created_at->format('d-m-Y') }}
+                              @else
+                                {{ $bed->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
                         @else
-                          <td> <a href="{{ route('admin.user.show',$bed->user->id) }}" class="text-black">{{ $bed->user->name }}</a> </td>
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif"> 
+                            <a href="{{ route('admin.user.show',$bed->user->id) }}" class="text-black">
+                              {{ $bed->user->name }} - 
+                              @if ($bed->updated_at == NULL)
+                                 {{ $bed->created_at->format('d-m-Y') }}
+                              @else
+                                 {{ $bed->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
                         @endif
                         <td>
                           <a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a>   
@@ -51,8 +77,9 @@
                           <button class="btn btn-danger pl-3 pt-2 pb-2" type="button" onclick="deleteBed({{ $bed->id }})" data-toggle="tooltip" data-placement="bottom" title="Delete {{ $bed->name }}">
                             <i class="mdi mdi-close"></i>
                           </button>
-                          <form id="delete-form-{{ $bed->id }}" action="{{ route('admin.bed.requestdelete',$bed->id) }}" method="POST" style="display: none;">
+                          <form id="delete-form-{{ $bed->id }}" action="{{ route('admin.bed.destroy',$bed->id) }}" method="POST" style="display: none;">
                               @csrf
+                              @method('DELETE')
                           </form>
                         </td>
                       </tr>
@@ -102,7 +129,20 @@
                           @endif
                         </td>
                         <td> {{ $bed->person }} </td>
-                        <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif"> 
+                          <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $bed->user->name }} - 
+                            @if ($bed->updated_at == NULL)
+                               {{ $bed->created_at->format('d-m-Y') }}
+                            @else
+                               {{ $bed->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a> 
+                        </td>
                         <td> 
                           <a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a>   
                           @if ($bed->bed_id == NULL)
@@ -193,7 +233,20 @@
                           <td> {{ $no++ }} </td>
                           <td> {{ $bed->name }} </td>
                           <td> {{ $bed->person }} </td>
-                          <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
+                          <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                            <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">
+                              {{ $bed->user->name }} - 
+                              @if ($bed->updated_at == NULL)
+                                 {{ $bed->created_at->format('d-m-Y') }}
+                              @else
+                                 {{ $bed->updated_at->format('d-m-Y') }}
+                              @endif
+                            </a>
+                          </td>
                           <td> 
                             <a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a>   
                             <a href="{{ route('admin.bed.edit',$bed->id) }}" class="btn btn-warning mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Edit {{ $bed->name }}"><i class="mdi mdi-pencil"></i></a>  
@@ -245,7 +298,20 @@
                           @endif
                         </td>
                         <td> {{ $bed->person }} </td>
-                        <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                          <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $bed->user->name }} - 
+                            @if ($bed->updated_at == NULL)
+                               {{ $bed->created_at->format('d-m-Y') }}
+                            @else
+                               {{ $bed->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a>  
+                        </td>
                         <td><a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a></td>
                       </tr>
                     @endforeach
@@ -289,7 +355,20 @@
                           @endif
                         </td>
                         <td> {{ $bed->person }} </td>
-                        <td> <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">{{ $bed->user->name }}</a> </td>
+                        <td data-toggle="tooltip" data-placement="bottom" title="@if ($bed->updated_at == NULL)
+                              {{ $bed->created_at->format('d-m-Y - H:i:s') }}
+                          @else 
+                              {{ $bed->updated_at->format('d-m-Y - H:i:s') }}
+                          @endif">
+                          <a href="{{ route('admin.user.show',$bed->user_id) }}" class="text-warning" style="text-decoration: none;">
+                            {{ $bed->user->name }} - 
+                            @if ($bed->updated_at == NULL)
+                               {{ $bed->created_at->format('d-m-Y') }}
+                            @else
+                               {{ $bed->updated_at->format('d-m-Y') }}
+                            @endif
+                          </a>
+                        </td>
                         <td><a href="{{ route('admin.bed.show',$bed->id) }}" class="btn btn-primary mr-2 pl-3 pt-2 pb-2" data-toggle="tooltip" data-placement="bottom" title="Detail {{ $bed->name }}"><i class="mdi mdi-eye"></i></a></td>
                       </tr>
                     @endforeach
